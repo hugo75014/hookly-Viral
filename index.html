@@ -1,0 +1,3322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hookly — AI Viral Hooks with Virality Score · 6 Languages</title>
+<meta name="description" content="Generate viral TikTok hooks, scripts, captions & hashtags in 10 seconds. Now with Virality Score (0-100) and 6 languages. Built for creators who want to post more and grow faster." />
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="apple-touch-icon" href="favicon.png" />
+<meta name="theme-color" content="#0a0a0f" />
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --bg-elev: #12121a;
+    --bg-card: #16161f;
+    --border: #23232e;
+    --text: #ffffff;
+    --text-dim: #9a9aa8;
+    --text-mute: #5a5a68;
+    --accent: #ff3d68;
+    --accent-2: #ff7a3d;
+    --accent-grad: linear-gradient(135deg, #ff3d68 0%, #ff7a3d 100%);
+    --accent-glow: 0 0 40px rgba(255, 61, 104, 0.4);
+    --green: #00d97e;
+    --shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "SF Pro Display", "Segoe UI", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  .gradient-text {
+    background: var(--accent-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    backdrop-filter: blur(20px);
+    background: rgba(10, 10, 15, 0.7);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 24px; max-width: 1200px; margin: 0 auto;
+  }
+  .logo { font-size: 22px; font-weight: 600; letter-spacing: -0.02em; }
+  .logo span { background: var(--accent-grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+  .btn {
+    padding: 10px 20px; border-radius: 10px; font-weight: 600; font-size: 14px;
+    border: none; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+    transition: transform 0.15s, box-shadow 0.2s;
+  }
+  .btn-primary {
+    background: var(--accent-grad); color: white; box-shadow: 0 4px 20px rgba(255, 61, 104, 0.3);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255, 61, 104, 0.5); }
+  .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
+  .btn-ghost:hover { background: var(--bg-card); }
+  .btn-lg { padding: 16px 32px; font-size: 16px; border-radius: 12px; }
+
+  /* HERO */
+  .hero {
+    padding: 100px 0 60px;
+    text-align: center;
+    position: relative;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -20%; left: 50%; transform: translateX(-50%);
+    width: 800px; height: 800px;
+    background: radial-gradient(circle, rgba(255, 61, 104, 0.15) 0%, transparent 60%);
+    pointer-events: none; z-index: 0;
+  }
+  .hero > * { position: relative; z-index: 1; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 14px; border-radius: 100px;
+    background: var(--bg-card); border: 1px solid var(--border);
+    font-size: 13px; color: var(--text-dim); margin-bottom: 24px;
+  }
+  .badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 10px var(--green); }
+  h1 {
+    font-size: clamp(40px, 6vw, 72px); font-weight: 600;
+    letter-spacing: -0.03em; line-height: 1.05;
+    margin-bottom: 24px;
+  }
+  .hero-sub {
+    font-size: 19px; color: var(--text-dim); max-width: 600px; margin: 0 auto 40px;
+  }
+  .hero-cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .hero-stats {
+    display: flex; gap: 48px; justify-content: center; margin-top: 60px;
+    flex-wrap: wrap;
+  }
+  .stat { text-align: center; }
+  .stat-num { font-size: 28px; font-weight: 600; }
+  .stat-label { font-size: 13px; color: var(--text-mute); margin-top: 4px; }
+
+  /* GENERATOR */
+  .generator {
+    padding: 80px 0;
+    background: linear-gradient(180deg, var(--bg) 0%, var(--bg-elev) 100%);
+  }
+  .gen-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: var(--shadow);
+    max-width: 800px; margin: 0 auto;
+  }
+  .gen-card h2 { font-size: 28px; font-weight: 600; margin-bottom: 8px; text-align: center; }
+  .gen-card .sub { color: var(--text-dim); text-align: center; margin-bottom: 32px; font-size: 15px; }
+  .field { margin-bottom: 20px; }
+  .field label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 8px; color: var(--text-dim); }
+  .field input, .field select, .field textarea {
+    width: 100%; padding: 14px 16px; background: var(--bg);
+    border: 1px solid var(--border); border-radius: 10px;
+    color: var(--text); font-size: 15px; font-family: inherit;
+    transition: border 0.2s, box-shadow 0.2s;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    outline: none; border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(255, 61, 104, 0.15);
+  }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 600px) { .row { grid-template-columns: 1fr; } }
+  .generate-btn {
+    width: 100%; padding: 16px; font-size: 16px; font-weight: 700;
+    background: var(--accent-grad); color: white; border: none;
+    border-radius: 12px; cursor: pointer; margin-top: 8px;
+    box-shadow: 0 4px 20px rgba(255, 61, 104, 0.3);
+    transition: transform 0.15s, box-shadow 0.2s;
+  }
+  .generate-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255, 61, 104, 0.5); }
+  .generate-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+  .generate-btn .spinner {
+    display: none; width: 16px; height: 16px;
+    border: 2px solid rgba(255,255,255,0.3); border-top-color: white;
+    border-radius: 50%; animation: spin 0.8s linear infinite;
+  }
+  .generate-btn.loading .spinner { display: inline-block; }
+  .generate-btn.loading .btn-text { display: none; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* OUTPUT */
+  .output { margin-top: 32px; display: none; }
+  .output.show { display: block; animation: slideUp 0.4s ease; }
+  @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .output-section {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 14px; padding: 20px; margin-bottom: 16px;
+  }
+  .output-section h3 {
+    font-size: 14px; font-weight: 700; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 14px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .hook-item {
+    background: var(--bg-card); padding: 14px 16px; border-radius: 10px;
+    margin-bottom: 8px; font-size: 15px; line-height: 1.5;
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    border: 1px solid transparent; transition: border 0.2s;
+  }
+  .hook-item:hover { border-color: var(--border); }
+  .copy-btn {
+    background: transparent; border: 1px solid var(--border); color: var(--text-dim);
+    padding: 6px 12px; border-radius: 6px; font-size: 12px; cursor: pointer;
+    flex-shrink: 0; transition: all 0.2s;
+  }
+  .copy-btn:hover { color: var(--text); border-color: var(--accent); }
+  .copy-btn.copied { color: var(--green); border-color: var(--green); }
+  .script-content {
+    font-size: 15px; line-height: 1.7; color: var(--text);
+    white-space: pre-wrap; font-family: inherit;
+  }
+  .hashtag-list { display: flex; flex-wrap: wrap; gap: 8px; }
+  .hashtag {
+    background: var(--bg-card); padding: 6px 12px; border-radius: 100px;
+    font-size: 13px; color: var(--text-dim); border: 1px solid var(--border);
+  }
+  .hashtag.primary { color: var(--accent); border-color: var(--accent); }
+
+  /* VIRALITY SCORE */
+  .hook-item {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 14px 16px;
+  }
+  .hook-row {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  }
+  .hook-text { flex: 1; }
+  .hook-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+  .score-badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 4px 10px; border-radius: 100px;
+    font-size: 12px; font-weight: 700;
+    cursor: pointer; user-select: none;
+    transition: transform 0.15s, box-shadow 0.2s;
+    border: 1px solid transparent;
+  }
+  .score-badge:hover { transform: scale(1.05); }
+  .score-badge.score-high { background: rgba(0, 217, 126, 0.12); color: var(--green); border-color: rgba(0, 217, 126, 0.3); }
+  .score-badge.score-mid { background: rgba(255, 200, 0, 0.12); color: #ffc800; border-color: rgba(255, 200, 0, 0.3); }
+  .score-badge.score-low { background: rgba(255, 61, 104, 0.12); color: var(--accent); border-color: rgba(255, 61, 104, 0.3); }
+  .score-breakdown {
+    margin-top: 12px; padding-top: 12px;
+    border-top: 1px dashed var(--border);
+    display: none;
+  }
+  .hook-item.expanded .score-breakdown { display: block; animation: slideUp 0.3s ease; }
+  .score-row {
+    display: grid; grid-template-columns: 130px 1fr 50px;
+    align-items: center; gap: 10px;
+    margin-bottom: 6px; font-size: 12px;
+  }
+  .score-row .label { color: var(--text-dim); }
+  .score-row .bar { height: 6px; background: var(--bg); border-radius: 3px; overflow: hidden; }
+  .score-row .bar-fill { height: 100%; background: var(--accent-grad); border-radius: 3px; transition: width 0.4s ease; }
+  .score-row .pts { color: var(--text); font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+  .score-hint {
+    margin-top: 10px; padding: 8px 10px;
+    background: var(--bg); border-radius: 8px;
+    font-size: 11px; color: var(--text-mute); line-height: 1.5;
+  }
+  .best-hook {
+    background: linear-gradient(135deg, rgba(0, 217, 126, 0.08), rgba(255, 61, 104, 0.08));
+    border-color: rgba(0, 217, 126, 0.4) !important;
+  }
+  .best-hook::after {
+    content: '👑 BEST';
+    position: absolute; top: -8px; right: 12px;
+    background: var(--accent-grad); color: white;
+    font-size: 10px; font-weight: 800; padding: 2px 8px;
+    border-radius: 100px; letter-spacing: 0.05em;
+  }
+  .hook-item { position: relative; }
+  .score-summary {
+    margin-top: 12px; padding: 12px 16px;
+    background: linear-gradient(135deg, rgba(255, 61, 104, 0.08), rgba(255, 122, 61, 0.08));
+    border: 1px solid rgba(255, 61, 104, 0.2);
+    border-radius: 10px; font-size: 13px; color: var(--text);
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  }
+  .score-summary .emoji { font-size: 18px; }
+
+  /* LANGUAGE SELECTOR */
+  .lang-row {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;
+  }
+  @media (max-width: 600px) { .lang-row { grid-template-columns: 1fr 1fr; } }
+  .lang-chip {
+    padding: 12px; background: var(--bg);
+    border: 1px solid var(--border); border-radius: 10px;
+    text-align: center; cursor: pointer; transition: all 0.15s;
+    font-size: 13px; color: var(--text-dim); font-weight: 600;
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+  }
+  .lang-chip:hover { border-color: var(--accent); color: var(--text); }
+  .lang-chip.active {
+    background: rgba(255, 61, 104, 0.08);
+    border-color: var(--accent); color: var(--text);
+  }
+  .lang-chip .flag { font-size: 20px; line-height: 1; }
+  .lang-chip .name { font-size: 11px; color: var(--text-mute); font-weight: 500; }
+  .lang-chip.active .name { color: var(--accent); }
+  .lang-auto-badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 2px 8px; border-radius: 100px;
+    background: rgba(0, 217, 126, 0.12); color: var(--green);
+    font-size: 10px; font-weight: 700; margin-left: 8px;
+  }
+
+  /* FEATURES */
+  .features { padding: 100px 0; }
+  .section-title { text-align: center; font-size: clamp(32px, 4vw, 48px); font-weight: 600; letter-spacing: -0.02em; margin-bottom: 16px; }
+  .section-sub { text-align: center; color: var(--text-dim); font-size: 17px; max-width: 600px; margin: 0 auto 60px; }
+  .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .feature {
+    background: var(--bg-card); border: 1px solid var(--border);
+    padding: 32px; border-radius: 16px;
+    transition: transform 0.2s, border 0.2s;
+  }
+  .feature:hover { transform: translateY(-4px); border-color: var(--accent); }
+  .feature-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: var(--accent-grad); display: flex; align-items: center; justify-content: center;
+    font-size: 22px; margin-bottom: 20px;
+  }
+  .feature h3 { font-size: 19px; font-weight: 600; margin-bottom: 8px; }
+  .feature p { color: var(--text-dim); font-size: 15px; }
+
+  /* PRICING */
+  .pricing { padding: 100px 0; background: var(--bg-elev); }
+  .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 900px; margin: 0 auto; }
+  .price-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    padding: 36px 28px; border-radius: 18px; position: relative;
+  }
+  .price-card.featured { border-color: var(--accent); box-shadow: var(--accent-glow); transform: scale(1.02); }
+  .price-tag {
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    background: var(--accent-grad); color: white; font-size: 12px; font-weight: 700;
+    padding: 4px 12px; border-radius: 100px; letter-spacing: 0.05em;
+  }
+  .price-card h3 { font-size: 22px; font-weight: 600; margin-bottom: 4px; }
+  .price-card .price-desc { color: var(--text-dim); font-size: 14px; margin-bottom: 24px; }
+  .price-amount { font-size: 48px; font-weight: 600; letter-spacing: -0.03em; margin-bottom: 8px; }
+  .price-amount span { font-size: 16px; color: var(--text-dim); font-weight: 500; }
+  .price-features { list-style: none; margin: 24px 0 32px; }
+  .price-features li { padding: 8px 0; font-size: 14px; color: var(--text-dim); display: flex; align-items: center; gap: 10px; }
+  .price-features li::before { content: "✓"; color: var(--green); font-weight: 700; }
+  .price-cta { width: 100%; }
+
+  /* FOOTER */
+  footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; color: var(--text-mute); font-size: 14px; }
+  footer a { color: var(--text-dim); text-decoration: none; }
+  footer a:hover { color: var(--text); }
+
+  /* TOAST */
+  .toast {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(100px);
+    background: var(--bg-card); border: 1px solid var(--border);
+    padding: 12px 20px; border-radius: 10px; font-size: 14px;
+    box-shadow: var(--shadow); opacity: 0; transition: all 0.3s; z-index: 1000;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* SCHEDULE */
+  .schedule-bar {
+    display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+    margin: 20px 0 0; padding: 16px; background: var(--bg);
+    border: 1px dashed var(--border); border-radius: 12px;
+  }
+  .schedule-bar .label { color: var(--text-dim); font-size: 14px; flex: 1; min-width: 200px; }
+  .schedule-btn {
+    padding: 10px 16px; border-radius: 10px; font-weight: 600; font-size: 14px;
+    background: transparent; color: var(--text); border: 1px solid var(--border);
+    cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+    transition: all 0.2s;
+  }
+  .schedule-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .schedule-btn.primary { background: var(--accent-grad); color: white; border: none; }
+  .schedule-btn.primary:hover { transform: translateY(-1px); }
+
+  /* MODAL */
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(8px); z-index: 200;
+    display: none; align-items: center; justify-content: center; padding: 20px;
+  }
+  .modal-overlay.show { display: flex; animation: fadeIn 0.2s ease; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .modal {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 20px; padding: 32px; max-width: 520px; width: 100%;
+    max-height: 90vh; overflow-y: auto; box-shadow: var(--shadow);
+  }
+  .modal h3 { font-size: 22px; font-weight: 600; margin-bottom: 6px; }
+  .modal .modal-sub { color: var(--text-dim); font-size: 14px; margin-bottom: 24px; }
+  .modal-close {
+    position: absolute; top: 16px; right: 16px;
+    background: transparent; border: none; color: var(--text-dim);
+    font-size: 24px; cursor: pointer; padding: 4px 8px;
+  }
+  .modal-close:hover { color: var(--text); }
+  .time-suggestions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 20px; }
+  .time-chip {
+    padding: 10px; background: var(--bg); border: 1px solid var(--border);
+    border-radius: 10px; text-align: center; font-size: 13px;
+    color: var(--text-dim); cursor: pointer; transition: all 0.15s;
+  }
+  .time-chip:hover { border-color: var(--accent); color: var(--text); }
+  .time-chip.best { background: rgba(255, 61, 104, 0.08); border-color: var(--accent); color: var(--text); position: relative; }
+  .time-chip .badge-mini {
+    position: absolute; top: -6px; right: -6px; background: var(--accent-grad);
+    color: white; font-size: 9px; padding: 2px 6px; border-radius: 6px; font-weight: 700;
+  }
+  .modal-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+  .modal-actions .btn { justify-content: center; width: 100%; }
+  .notify-row {
+    display: flex; align-items: center; gap: 10px; padding: 12px;
+    background: var(--bg); border: 1px solid var(--border); border-radius: 10px;
+    margin-top: 16px; font-size: 14px; color: var(--text-dim);
+  }
+  .notify-row input[type=checkbox] { width: 18px; height: 18px; accent-color: var(--accent); }
+
+  /* DASHBOARD */
+  .dashboard-link { position: relative; }
+  .dashboard-badge {
+    position: absolute; top: -6px; right: -10px;
+    background: var(--accent); color: white; font-size: 10px; font-weight: 700;
+    min-width: 16px; height: 16px; border-radius: 8px; padding: 0 4px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .dashboard-panel { padding: 80px 0; background: var(--bg-elev); }
+  .scheduled-list { max-width: 800px; margin: 0 auto; }
+  .scheduled-item {
+    background: var(--bg-card); border: 1px solid var(--border);
+    padding: 20px; border-radius: 12px; margin-bottom: 12px;
+    display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;
+  }
+  .scheduled-item .info { flex: 1; min-width: 200px; }
+  .scheduled-item .title { font-weight: 600; margin-bottom: 4px; }
+  .scheduled-item .meta { font-size: 13px; color: var(--text-dim); }
+  .scheduled-item .actions { display: flex; gap: 8px; }
+  .empty-state { text-align: center; padding: 40px; color: var(--text-mute); }
+  .platform-tag {
+    display: inline-block; padding: 2px 8px; background: var(--bg);
+    border: 1px solid var(--border); border-radius: 6px;
+    font-size: 11px; color: var(--text-dim); margin-left: 8px;
+  }
+
+  /* Hide platform-injected floating ball */
+  #minimax-floating-ball { display: none !important; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">
+      <img src="favicon.png" alt="Hookly" style="height: 32px; width: 32px; margin-right: 8px; vertical-align: middle; border-radius: 8px;" />
+      Hookly<span>.</span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html#generator" data-i18n="nav_generator">Generator</a>
+      <a href="index.html#features" data-i18n="nav_features">Features</a>
+      <a href="index.html#pricing" data-i18n="nav_pricing">Pricing</a>
+      <a href="index.html#dashboard" class="dashboard-link">📅 <span data-i18n="nav_schedule">My Schedule</span> <span class="dashboard-badge" id="scheduledCount" style="display:none;">0</span></a>
+      <button class="schedule-btn" id="openTranslateBtn" title="Translate site"><span id="translateBtnFlag">🇬🇧</span> 🌐</button>
+      <button class="schedule-btn" id="openSettingsBtn" title="AI Settings">⚙️</button>
+      <a href="index.html#generator" class="btn btn-primary" data-i18n="nav_try_free">Try Free</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="badge"><span class="dot"></span> <span data-i18n="hero_badge">12,847 creators growing this week</span></div>
+    <h1><span data-i18n="hero_h1_1">Stop guessing.</span> <br><span class="gradient-text" data-i18n="hero_h1_2">Start going viral.</span></h1>
+    <p class="hero-sub" data-i18n="hero_sub">AI-powered hooks, scripts & captions for TikTok, Reels and Shorts. <strong>With Virality Score</strong> and <strong>6 languages</strong>. Generate 30 days of content in 5 minutes.</p>
+    <div class="hero-cta">
+      <a href="index.html#generator" class="btn btn-primary btn-lg" data-i18n="hero_cta_primary">Generate Free Hooks →</a>
+      <a href="index.html#pricing" class="btn btn-ghost btn-lg" data-i18n="hero_cta_secondary">See Pricing</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">2.4M+</div><div class="stat-label" data-i18n="stat_hooks">Hooks generated</div></div>
+      <div class="stat"><div class="stat-num">10s</div><div class="stat-label" data-i18n="stat_per_gen">Per generation</div></div>
+      <div class="stat"><div class="stat-num">3x</div><div class="stat-label" data-i18n="stat_boost">Avg. view boost</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="generator" id="generator">
+  <div class="container">
+    <div class="gen-card">
+      <h2 data-i18n="gen_title">Try it now — it's free</h2>
+      <p class="sub" data-i18n="gen_sub">No signup. No credit card. Just results.</p>
+      <form id="genForm">
+        <div class="row">
+          <div class="field">
+            <label for="niche" data-i18n="field_niche">Your niche</label>
+            <input type="text" id="niche" data-i18n-ph="niche_ph" placeholder="e.g. fitness, cooking, SaaS, dating" required />
+          </div>
+          <div class="field">
+            <label for="platform" data-i18n="field_platform">Platform</label>
+            <select id="platform" data-i18n-options="platform_tiktok,platform_reels,platform_shorts,platform_linkedin">
+              <option>TikTok</option>
+              <option>Instagram Reels</option>
+              <option>YouTube Shorts</option>
+              <option>LinkedIn</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="topic" data-i18n="field_topic">Video topic</label>
+            <input type="text" id="topic" data-i18n-ph="topic_ph" placeholder="e.g. 5 morning habits of successful people" required />
+          </div>
+          <div class="field">
+            <label for="tone" data-i18n="field_tone">Tone</label>
+            <select id="tone" data-i18n-options="tone_controversial,tone_curious,tone_shocking,tone_relatable,tone_educational,tone_funny">
+              <option>Controversial / Hot take</option>
+              <option>Curious / Question</option>
+              <option>Shocking / Stat</option>
+              <option>Relatable / Story</option>
+              <option>Educational / How-to</option>
+              <option>Funny / Meme</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label><span data-i18n="field_language">Output language</span> <span id="langAutoBadge" class="lang-auto-badge" style="display:none;" data-i18n="auto_detect">✨ Auto-detect</span></label>
+          <div class="lang-row" id="langSelector">
+            <div class="lang-chip active" data-lang="EN"><span class="flag">🇬🇧</span><span>English</span><span class="name">EN</span></div>
+            <div class="lang-chip" data-lang="FR"><span class="flag">🇫🇷</span><span>Français</span><span class="name">FR</span></div>
+            <div class="lang-chip" data-lang="ES"><span class="flag">🇪🇸</span><span>Español</span><span class="name">ES</span></div>
+            <div class="lang-chip" data-lang="DE"><span class="flag">🇩🇪</span><span>Deutsch</span><span class="name">DE</span></div>
+            <div class="lang-chip" data-lang="PT"><span class="flag">🇵🇹</span><span>Português</span><span class="name">PT</span></div>
+            <div class="lang-chip" data-lang="IT"><span class="flag">🇮🇹</span><span>Italiano</span><span class="name">IT</span></div>
+          </div>
+        </div>
+        <button type="submit" class="generate-btn" id="genBtn">
+          <span class="btn-text" data-i18n="btn_generate">⚡ Generate Viral Hooks</span>
+          <span class="spinner"></span>
+        </button>
+      </form>
+
+      <div class="output" id="output">
+        <div class="output-section">
+          <h3 data-i18n="out_hooks">🔥 5 Viral Hooks</h3>
+          <div id="hooksList"></div>
+        </div>
+        <div class="output-section">
+          <h3 data-i18n="out_script">📝 Full Script (30-60s)</h3>
+          <div class="script-content" id="scriptContent"></div>
+        </div>
+        <div class="output-section">
+          <h3 data-i18n="out_caption">✍️ Caption</h3>
+          <div class="script-content" id="captionContent"></div>
+        </div>
+        <div class="output-section">
+          <h3 data-i18n="out_hashtags">#️⃣ Hashtags</h3>
+          <div class="hashtag-list" id="hashtagsList"></div>
+        </div>
+        <div class="schedule-bar">
+          <span class="label" data-i18n="out_schedule_prompt">📅 Ready to post? Schedule a reminder so you don't forget.</span>
+          <button class="schedule-btn primary" id="openScheduleBtn" data-i18n="out_schedule_btn">📅 Schedule this</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features" id="features">
+  <div class="container">
+    <h2 class="section-title"><span data-i18n="feat_title">Built for creators who</span> <span class="gradient-text" data-i18n="feat_title_accent">post daily</span></h2>
+    <p class="section-sub" data-i18n="feat_sub">Everything you need to never stare at a blank screen again.</p>
+    <div class="feature-grid">
+      <div class="feature">
+        <div class="feature-icon">⚡</div>
+        <h3 data-i18n="feat_1_title">10-second generation</h3>
+        <p data-i18n="feat_1_desc">Type your topic. Get 5 hooks, a full script, and hashtags. Move on with your day.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🎯</div>
+        <h3><span data-i18n="feat_2_title">Virality Score</span> <span style="font-size:11px;background:var(--accent-grad);color:white;padding:2px 8px;border-radius:100px;margin-left:6px;" data-i18n="badge_new">NEW</span></h3>
+        <p data-i18n="feat_2_desc">Every hook gets a 0-100 score with breakdown: length, power words, pattern interrupt, curiosity gap. Know what'll work BEFORE you post.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🌍</div>
+        <h3><span data-i18n="feat_3_title">6 languages</span> <span style="font-size:11px;background:var(--accent-grad);color:white;padding:2px 8px;border-radius:100px;margin-left:6px;" data-i18n="badge_new">NEW</span></h3>
+        <p data-i18n="feat_3_desc">English, French, Spanish, German, Portuguese, Italian. Native power words and patterns — not bad translations.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🧬</div>
+        <h3 data-i18n="feat_4_title">Trained on viral content</h3>
+        <p data-i18n="feat_4_desc">Our model has analyzed 100K+ viral videos. It knows what stops the scroll.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🧬</div>
+        <h3 data-i18n="feat_5_title">6 hook styles</h3>
+        <p data-i18n="feat_5_desc">Controversial, curious, shocking, relatable, educational, funny. Match your brand.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📅</div>
+        <h3 data-i18n="feat_6_title">30-day content calendar</h3>
+        <p data-i18n="feat_6_desc">Upgrade to Pro: get a full month of hooks auto-generated. Never run out of ideas.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🎙️</div>
+        <h3 data-i18n="feat_7_title">AI voice-over</h3>
+        <p data-i18n="feat_7_desc">Pro plan: turn scripts into studio-quality voiceovers in your favorite tone.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🚀</div>
+        <h3 data-i18n="feat_8_title">Auto-post to TikTok</h3>
+        <p data-i18n="feat_8_desc">Pro plan: schedule and post directly. Set it, forget it, wake up to views.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dashboard-panel" id="dashboard">
+  <div class="container">
+    <h2 class="section-title"><span data-i18n="dash_title">Your</span> <span class="gradient-text" data-i18n="dash_title_accent">scheduled posts</span></h2>
+    <p class="section-sub" data-i18n="dash_sub">Reminders you've set. Tap to copy caption, edit, or remove.</p>
+    <div class="scheduled-list" id="scheduledList"></div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="container">
+    <h2 class="section-title"><span data-i18n="price_title">Pricing that</span> <span class="gradient-text" data-i18n="price_title_accent">pays for itself</span></h2>
+    <p class="section-sub" data-i18n="price_sub">One viral video = thousands in brand deals. We cost less than your morning coffee.</p>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <h3 data-i18n="price_free_name">Free</h3>
+        <p class="price-desc" data-i18n="price_free_desc">Try the magic</p>
+        <div class="price-amount">$0<span data-i18n="price_free_period">/forever</span></div>
+        <ul class="price-features">
+          <li data-i18n="price_f_1">5 generations per day</li>
+          <li data-i18n="price_f_2">5 hooks per generation</li>
+          <li data-i18n="price_f_3">Powered by smart templates</li>
+          <li data-i18n="price_f_4">All 6 hook styles</li>
+          <li data-i18n="price_f_5">Schedule reminders</li>
+          <li data-i18n="price_f_6">Bring your own AI key</li>
+        </ul>
+        <a href="index.html#generator" class="btn btn-ghost price-cta" data-i18n="price_cta_free">Start free</a>
+      </div>
+      <div class="price-card featured">
+        <div class="price-tag" data-i18n="price_popular">MOST POPULAR</div>
+        <h3 data-i18n="price_pro_name">Pro</h3>
+        <p class="price-desc" data-i18n="price_pro_desc">For serious creators</p>
+        <div class="price-amount">$19<span data-i18n="price_pro_period">/month</span></div>
+        <ul class="price-features">
+          <li data-i18n="price_f_7">Unlimited generations</li>
+          <li data-i18n="price_f_8">Real AI (Llama 3.3 70B or GPT-4o)</li>
+          <li data-i18n="price_f_9">30-day content calendar</li>
+          <li data-i18n="price_f_10">Trending topic alerts</li>
+          <li data-i18n="price_f_11">AI voice-over (10 voices)</li>
+          <li data-i18n="price_f_12">Priority support</li>
+        </ul>
+        <a href="index.html#" class="btn btn-primary price-cta" onclick="event.preventDefault(); alert(t('price_stripe_soon'));" data-i18n="price_cta_pro">Get Pro →</a>
+      </div>
+      <div class="price-card">
+        <h3 data-i18n="price_agency_name">Agency</h3>
+        <p class="price-desc" data-i18n="price_agency_desc">For teams & brands</p>
+        <div class="price-amount">$99<span data-i18n="price_agency_period">/month</span></div>
+        <ul class="price-features">
+          <li data-i18n="price_f_13">Everything in Pro</li>
+          <li data-i18n="price_f_14">10 team seats</li>
+          <li data-i18n="price_f_15">White-label reports</li>
+          <li data-i18n="price_f_16">API access</li>
+          <li data-i18n="price_f_17">Dedicated success manager</li>
+        </ul>
+        <a href="index.html#" class="btn btn-ghost price-cta" onclick="event.preventDefault(); alert(t('price_contact_soon'));" data-i18n="price_cta_agency">Contact sales</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p><span data-i18n="footer_copy">© 2026 Hookly · Made for creators who don't want to waste time ·</span> <a href="legal.html" data-i18n="footer_terms">Terms & Privacy</a> · <a href="legal.html#ai" data-i18n="footer_ai">AI Policy</a></p>
+  </div>
+</footer>
+
+<div class="toast" id="toast" data-i18n="out_copied">Copied to clipboard ✓</div>
+
+<!-- SETTINGS MODAL (API keys + LLM provider) -->
+<div class="modal-overlay" id="settingsModal">
+  <div class="modal" style="position: relative;">
+    <button class="modal-close" id="closeSettings">×</button>
+    <h3 data-i18n="set_title">⚙️ AI Settings</h3>
+    <p class="modal-sub" data-i18n="set_sub">Bring your own API key to unlock premium AI generation. Or stick with the free template engine — it works fine.</p>
+
+    <div class="field">
+      <label for="llmProvider" data-i18n="set_provider">AI Provider</label>
+      <select id="llmProvider" data-i18n-options="set_provider_free,set_provider_groq,set_provider_openai">
+        <option value="template">🆓 Free (Template engine) — works offline, no key needed</option>
+        <option value="groq">⚡ Groq (FREE tier available, ultra-fast)</option>
+        <option value="openai">🧠 OpenAI (paid, highest quality)</option>
+      </select>
+    </div>
+
+    <div id="groqKeyField" class="field" style="display:none;">
+      <label for="groqApiKey"><span data-i18n="set_groq_key">Groq API Key</span> <span style="color: var(--text-mute); font-weight: normal;">(<span data-i18n="set_groq_free">get one free at</span> <a href="https://console.groq.com" target="_blank" style="color: var(--accent);" data-i18n="set_groq_url">console.groq.com</a>)</span></label>
+      <input type="password" id="groqApiKey" placeholder="gsk_..." autocomplete="off" />
+    </div>
+
+    <div id="openaiKeyField" class="field" style="display:none;">
+      <label for="openaiApiKey"><span data-i18n="set_openai_key">OpenAI API Key</span> <span style="color: var(--text-mute); font-weight: normal;">(<span data-i18n="set_openai_at">get one at</span> <a href="https://platform.openai.com" target="_blank" style="color: var(--accent);" data-i18n="set_openai_url">platform.openai.com</a>)</span></label>
+      <input type="password" id="openaiApiKey" placeholder="sk-..." autocomplete="off" />
+    </div>
+
+    <div id="groqModelField" class="field" style="display:none;">
+      <label for="groqModel" data-i18n="set_groq_model">Groq Model</label>
+      <select id="groqModel" data-i18n-options="set_groq_1,set_groq_2,set_groq_3">
+        <option value="llama-3.3-70b-versatile">Llama 3.3 70B (recommended, best quality)</option>
+        <option value="llama-3.1-8b-instant">Llama 3.1 8B (fastest, free tier friendly)</option>
+        <option value="mixtral-8x7b-32768">Mixtral 8x7B (balanced)</option>
+      </select>
+    </div>
+
+    <div id="openaiModelField" class="field" style="display:none;">
+      <label for="openaiModel" data-i18n="set_openai_model">OpenAI Model</label>
+      <select id="openaiModel" data-i18n-options="set_openai_1,set_openai_2,set_openai_3">
+        <option value="gpt-4o-mini">GPT-4o Mini (cheap, fast, great quality)</option>
+        <option value="gpt-4o">GPT-4o (best quality, expensive)</option>
+        <option value="gpt-3.5-turbo">GPT-3.5 Turbo (cheapest)</option>
+      </select>
+    </div>
+
+    <label class="notify-row">
+      <input type="checkbox" id="showProviderBadge" checked />
+      <span data-i18n="set_badge_label">Show which AI engine generated this (transparency)</span>
+    </label>
+
+    <div style="margin-top: 16px; padding: 12px; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; font-size: 13px; color: var(--text-dim); line-height: 1.6;">
+      <span data-i18n="set_security">🔒</span> <strong data-i18n="set_security_bold">Your keys stay in your browser</strong> <span data-i18n="set_security_after">(localStorage). They never touch our servers. We don't see them, we don't log them, we don't share them.</span>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn btn-primary" id="saveSettingsBtn" data-i18n="set_save">Save settings</button>
+      <button class="btn btn-ghost" id="testProviderBtn" data-i18n="set_test">🧪 Test connection</button>
+    </div>
+  </div>
+</div>
+
+<!-- SCHEDULE MODAL -->
+<div class="modal-overlay" id="scheduleModal">
+  <div class="modal" style="position: relative;">
+    <button class="modal-close" id="closeModal">×</button>
+    <h3 data-i18n="sched_title">📅 Schedule this post</h3>
+    <p class="modal-sub" data-i18n="sched_sub">Pick when you want to post. We'll remind you with everything pre-copied.</p>
+
+    <div class="field">
+      <label><span data-i18n="sched_best_times">Best times to post on</span> <span id="modalPlatform">TikTok</span></label>
+      <div class="time-suggestions" id="timeSuggestions"></div>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label for="scheduleDate" data-i18n="sched_field_date">Date</label>
+        <input type="date" id="scheduleDate" />
+      </div>
+      <div class="field">
+        <label for="scheduleTime" data-i18n="sched_field_time">Time</label>
+        <input type="time" id="scheduleTime" />
+      </div>
+    </div>
+
+    <label class="notify-row">
+      <input type="checkbox" id="notifyCheck" />
+      <span data-i18n="sched_notify">🔔 Send me a browser notification when it's time (we'll auto-copy caption + hashtags to clipboard)</span>
+    </label>
+
+    <div class="modal-actions">
+      <button class="btn btn-primary" id="gcalBtn" data-i18n="sched_gcal">📅 Add to Google Calendar</button>
+      <button class="btn btn-ghost" id="icsBtn" data-i18n="sched_ics">⬇️ Download .ics (works with Apple Calendar, Outlook, etc.)</button>
+      <button class="btn btn-ghost" id="saveLocalBtn" data-i18n="sched_local">💾 Just save it here (I'll check the dashboard)</button>
+    </div>
+  </div>
+</div>
+
+<!-- TRANSLATE MODAL -->
+<div class="modal-overlay" id="translateModal">
+  <div class="modal" style="position: relative; max-width: 560px;">
+    <button class="modal-close" id="closeTranslate">×</button>
+    <h3 data-i18n="translate_title">🌐 Translate site</h3>
+    <p class="modal-sub" data-i18n="translate_sub">Choose a language for the entire interface</p>
+
+    <div class="lang-row" id="translateLangGrid" style="grid-template-columns: 1fr 1fr 1fr;">
+      <div class="lang-chip" data-ui-lang="EN"><span class="flag">🇬🇧</span><span>English</span><span class="name">EN</span></div>
+      <div class="lang-chip" data-ui-lang="FR"><span class="flag">🇫🇷</span><span>Français</span><span class="name">FR</span></div>
+      <div class="lang-chip" data-ui-lang="ES"><span class="flag">🇪🇸</span><span>Español</span><span class="name">ES</span></div>
+      <div class="lang-chip" data-ui-lang="DE"><span class="flag">🇩🇪</span><span>Deutsch</span><span class="name">DE</span></div>
+      <div class="lang-chip" data-ui-lang="PT"><span class="flag">🇵🇹</span><span>Português</span><span class="name">PT</span></div>
+      <div class="lang-chip" data-ui-lang="IT"><span class="flag">🇮🇹</span><span>Italiano</span><span class="name">IT</span></div>
+    </div>
+
+    <div style="margin-top: 20px; padding: 12px; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; font-size: 13px; color: var(--text-dim); line-height: 1.6;">
+      💡 <span data-i18n="translate_note">The content language (in the form) is independent. You can mix.</span>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   HOOKLY MVP — Generator Engine
+   Multi-LLM with template fallback:
+   - Free: smart template engine (no API key needed)
+   - Pro via Groq: ultra-fast, free tier available
+   - Pro via OpenAI: highest quality, paid
+   ============================================================ */
+
+const LLM_PROMPTS = {
+  system: `You are an expert viral-content strategist who has helped creators generate billions of views on TikTok, Instagram Reels, and YouTube Shorts.
+
+You deeply understand:
+- The psychology of the first 3 seconds (the "hook")
+- Pattern interrupts and curiosity loops
+- Platform-specific algorithms (TikTok watch time, Reels shares, Shorts subscribers)
+- Niche-specific viral formats (fitness, finance, cooking, tech, dating, etc.)
+- The 6 viral hook styles: Controversial, Curious, Shocking, Relatable, Educational, Funny
+- Language-specific viral patterns: power words, slang, and cultural hooks that resonate in each language
+
+Your output is ALWAYS in this exact JSON shape, no extra text, no markdown:
+
+{
+  "hooks": ["hook 1", "hook 2", "hook 3", "hook 4", "hook 5"],
+  "script": "Full 30-60 second script with [HOOK] [PROBLEM] [REVEAL] [PAYOFF] [CTA] sections + visual notes",
+  "caption": "Engaging 2-3 line caption with emoji and CTA",
+  "hashtags": ["#hashtag1", "#hashtag2", "#hashtag3", "#hashtag4", "#hashtag5", "#hashtag6", "#hashtag7", "#hashtag8"]
+}
+
+HARD RULES — read carefully:
+
+1. TOPIC FIDELITY (most important): Every hook, every line of the script, the caption, and every hashtag MUST revolve around the EXACT topic the user provided. NEVER invent a different subject, never substitute with a tangential theme, never add a creative twist that drifts from what the user asked. The topic is sacred. Example: if the user said "morning habits", do NOT turn it into cats, dogs, money, or any other subject — STAY on morning habits.
+
+2. ALL OUTPUT MUST BE IN THE SPECIFIED LANGUAGE ({language}). Pure native. No English mixed in. No Franglais. No Spanglish. No Denglisch. If a beginner would say "this is translated", you failed.
+
+3. NATIVE QUALITY: The script must read like a native creator actually wrote it, not a translation. Avoid clunky constructions like "salut les gens" or generic "hello everyone" openers. Use natural rhythm and slang that real {language}-speaking creators use on TikTok.
+
+4. EXACT COUNT: 5 hooks, 8 hashtags, nothing more, nothing less. Hooks MAX 15 words each.
+
+5. HASHTAG MIX: 2 niche-specific to the topic + 4 broad reach + 2 trending. All in the {language} script (Latin, Cyrillic, Arabic — whatever {language} uses).
+
+6. HOOK STYLES: Match the tone the user selected. "Controversial" = strong opinions, "Curious" = questions, "Shocking" = stats/numbers, "Relatable" = stories, "Educational" = how-to, "Funny" = humor.
+
+7. SCRIPT STRUCTURE: Use the [HOOK] [PROBLEM] [REVEAL] [PAYOFF] [CTA] sections. Add [VISUAL NOTES] at the end with 3-4 specific shot directions. Total 30-60 seconds when read aloud.`
+};
+
+// ============================================================
+// UI STRINGS — full interface translation (nav, hero, sections, modals)
+// ============================================================
+const UI_STRINGS = {
+  EN: {
+    // Nav
+    nav_generator: 'Generator', nav_features: 'Features', nav_pricing: 'Pricing',
+    nav_schedule: 'My Schedule', nav_try_free: 'Try Free', nav_translate: 'Translate site',
+    // Hero
+    hero_badge: '12,847 creators growing this week',
+    hero_h1_1: 'Stop guessing.', hero_h1_2: 'Start going viral.',
+    hero_sub: 'AI-powered hooks, scripts & captions for TikTok, Reels and Shorts. <strong>With Virality Score</strong> and <strong>6 languages</strong>. Generate 30 days of content in 5 minutes.',
+    hero_cta_primary: 'Generate Free Hooks →',
+    hero_cta_secondary: 'See Pricing',
+    stat_hooks: 'Hooks generated', stat_per_gen: 'Per generation', stat_boost: 'Avg. view boost',
+    // Generator
+    gen_title: "Try it now — it's free",
+    gen_sub: 'No signup. No credit card. Just results.',
+    field_niche: 'Your niche', niche_ph: 'e.g. fitness, cooking, SaaS, dating',
+    field_platform: 'Platform',
+    platform_tiktok: 'TikTok', platform_reels: 'Instagram Reels', platform_shorts: 'YouTube Shorts', platform_linkedin: 'LinkedIn',
+    field_topic: 'Video topic', topic_ph: 'e.g. 5 morning habits of successful people',
+    field_tone: 'Tone',
+    tone_controversial: 'Controversial / Hot take',
+    tone_curious: 'Curious / Question',
+    tone_shocking: 'Shocking / Stat',
+    tone_relatable: 'Relatable / Story',
+    tone_educational: 'Educational / How-to',
+    tone_funny: 'Funny / Meme',
+    field_language: 'Output language', auto_detect: '✨ Auto-detect',
+    btn_generate: '⚡ Generate Viral Hooks',
+    // Output
+    out_hooks: '🔥 5 Viral Hooks',
+    out_script: '📝 Full Script (30-60s)',
+    out_caption: '✍️ Caption',
+    out_hashtags: '#️⃣ Hashtags',
+    out_schedule_prompt: '📅 Ready to post? Schedule a reminder so you don\'t forget.',
+    out_schedule_btn: '📅 Schedule this',
+    out_copy: 'Copy',
+    out_copied: 'Copied to clipboard ✓',
+    out_score_strong: '🔥 Strong batch! Average virality:',
+    out_score_avg: 'Average virality score:',
+    out_score_low: 'Average: Try regenerating with a different tone.',
+    out_score_hint: 'Click any score for breakdown',
+    engine_groq: '⚡ Generated by Groq (Llama 3.3 70B)',
+    engine_openai: '🧠 Generated by OpenAI (GPT-4o Mini)',
+    engine_template: '🎯 Generated by Hookly Templates',
+    engine_fallback: '⚠️ AI failed, using templates',
+    // Score labels
+    score_length: 'Length', score_power: 'Power words', score_pattern: 'Pattern interrupt',
+    score_strong_start: 'Strong start', score_pronoun: 'Direct address', score_curiosity: 'Curiosity gap',
+    score_words: 'words', score_detected: 'detected', score_signals: 'signals detected',
+    score_tip_too_long: 'Too long — try trimming to 5-12 words',
+    score_tip_too_short: 'Too short — add context',
+    score_tip_sweet_spot: 'Sweet spot for short-form',
+    score_tip_try: 'Try:',
+    score_tip_strong: 'Strong',
+    score_tip_good_start: 'Good start',
+    score_tip_pattern: 'Add a question, number, or contradiction',
+    score_tip_first_word: '✓ first word is scroll-stopping',
+    score_tip_try_start: 'Try starting with:',
+    score_tip_speaks: 'Speaks to viewer directly',
+    score_tip_add_you: 'Add "you" for connection',
+    score_tip_opens_loop: 'Opens a loop',
+    score_tip_tease: 'Tease more — hint at the answer',
+    // Features
+    feat_title: 'Built for creators who', feat_title_accent: 'post daily',
+    feat_sub: 'Everything you need to never stare at a blank screen again.',
+    feat_1_title: '10-second generation', feat_1_desc: 'Type your topic. Get 5 hooks, a full script, and hashtags. Move on with your day.',
+    feat_2_title: 'Virality Score', feat_2_desc: 'Every hook gets a 0-100 score with breakdown: length, power words, pattern interrupt, curiosity gap. Know what\'ll work BEFORE you post.',
+    feat_3_title: '6 languages', feat_3_desc: 'English, French, Spanish, German, Portuguese, Italian. Native power words and patterns — not bad translations.',
+    feat_4_title: 'Trained on viral content', feat_4_desc: 'Our model has analyzed 100K+ viral videos. It knows what stops the scroll.',
+    feat_5_title: '6 hook styles', feat_5_desc: 'Controversial, curious, shocking, relatable, educational, funny. Match your brand.',
+    feat_6_title: '30-day content calendar', feat_6_desc: 'Upgrade to Pro: get a full month of hooks auto-generated. Never run out of ideas.',
+    feat_7_title: 'AI voice-over', feat_7_desc: 'Pro plan: turn scripts into studio-quality voiceovers in your favorite tone.',
+    feat_8_title: 'Auto-post to TikTok', feat_8_desc: 'Pro plan: schedule and post directly. Set it, forget it, wake up to views.',
+    badge_new: 'NEW',
+    // Dashboard
+    dash_title: 'Your', dash_title_accent: 'scheduled posts',
+    dash_sub: "Reminders you've set. Tap to copy caption, edit, or remove.",
+    dash_empty: '📅 No scheduled posts yet. Generate content above and hit "Schedule this".',
+    dash_copy: '📋 Copy caption', dash_remove: '🗑️',
+    // Pricing
+    price_title: 'Pricing that', price_title_accent: 'pays for itself',
+    price_sub: 'One viral video = thousands in brand deals. We cost less than your morning coffee.',
+    price_free_name: 'Free', price_free_desc: 'Try the magic', price_free_period: '/forever',
+    price_pro_name: 'Pro', price_pro_desc: 'For serious creators', price_pro_period: '/month',
+    price_agency_name: 'Agency', price_agency_desc: 'For teams & brands', price_agency_period: '/month',
+    price_popular: 'MOST POPULAR',
+    price_f_1: '5 generations per day', price_f_2: '5 hooks per generation',
+    price_f_3: 'Powered by smart templates', price_f_4: 'All 6 hook styles',
+    price_f_5: 'Schedule reminders', price_f_6: 'Bring your own AI key',
+    price_f_7: 'Unlimited generations', price_f_8: 'Real AI (Llama 3.3 70B or GPT-4o)',
+    price_f_9: '30-day content calendar', price_f_10: 'Trending topic alerts',
+    price_f_11: 'AI voice-over (10 voices)', price_f_12: 'Priority support',
+    price_f_13: 'Everything in Pro', price_f_14: '10 team seats',
+    price_f_15: 'White-label reports', price_f_16: 'API access',
+    price_f_17: 'Dedicated success manager',
+    price_cta_free: 'Start free', price_cta_pro: 'Get Pro →', price_cta_agency: 'Contact sales',
+    price_stripe_soon: 'Stripe checkout coming soon! 🚀',
+    price_contact_soon: 'Sales team contact coming soon! 🚀',
+    // Footer
+    footer_copy: '© 2026 Hookly · Made for creators who don\'t want to waste time ·',
+    footer_terms: 'Terms & Privacy', footer_ai: 'AI Policy',
+    // Settings modal
+    set_title: '⚙️ AI Settings',
+    set_sub: 'Bring your own API key to unlock premium AI generation. Or stick with the free template engine — it works fine.',
+    set_provider: 'AI Provider',
+    set_provider_free: '🆓 Free (Template engine) — works offline, no key needed',
+    set_provider_groq: '⚡ Groq (FREE tier available, ultra-fast)',
+    set_provider_openai: '🧠 OpenAI (paid, highest quality)',
+    set_groq_key: 'Groq API Key', set_groq_free: '(get one free at', set_groq_url: 'console.groq.com',
+    set_openai_key: 'OpenAI API Key', set_openai_at: '(get one at', set_openai_url: 'platform.openai.com',
+    set_groq_model: 'Groq Model',
+    set_groq_1: 'Llama 3.3 70B (recommended, best quality)',
+    set_groq_2: 'Llama 3.1 8B (fastest, free tier friendly)',
+    set_groq_3: 'Mixtral 8x7B (balanced)',
+    set_openai_model: 'OpenAI Model',
+    set_openai_1: 'GPT-4o Mini (cheap, fast, great quality)',
+    set_openai_2: 'GPT-4o (best quality, expensive)',
+    set_openai_3: 'GPT-3.5 Turbo (cheapest)',
+    set_badge_label: 'Show which AI engine generated this (transparency)',
+    set_security: '🔒', set_security_bold: 'Your keys stay in your browser', set_security_after: '(localStorage). They never touch our servers. We don\'t see them, we don\'t log them, we don\'t share them.',
+    set_save: 'Save settings', set_test: '🧪 Test connection',
+    set_test_ok: '✅ Connection works!', set_test_template: 'Template engine is always available ✓',
+    set_test_no_key_groq: 'Enter a Groq key first', set_test_no_key_openai: 'Enter an OpenAI key first',
+    set_testing: 'Testing... ⏳', set_saved: 'Settings saved ✓',
+    // Schedule modal
+    sched_title: '📅 Schedule this post',
+    sched_sub: "Pick when you want to post. We'll remind you with everything pre-copied.",
+    sched_best_times: 'Best times to post on',
+    sched_field_date: 'Date', sched_field_time: 'Time',
+    sched_notify: '🔔 Send me a browser notification when it\'s time (we\'ll auto-copy caption + hashtags to clipboard)',
+    sched_gcal: '📅 Add to Google Calendar',
+    sched_ics: '⬇️ Download .ics (works with Apple Calendar, Outlook, etc.)',
+    sched_local: "💾 Just save it here (I'll check the dashboard)",
+    sched_best_chip: 'BEST',
+    sched_pick_first: 'Pick a date and time first 📅',
+    sched_past: 'That time has passed — pick a future time ⏰',
+    sched_reminder_set: '🔔 Reminder set! We\'ll notify you.',
+    sched_saved_no_notify: 'Saved ✓ (enable notifications for reminders)',
+    sched_saved: 'Saved to your schedule ✓',
+    sched_dl: 'Calendar file downloaded ✓',
+    sched_removed: 'Removed',
+    sched_gen_first: 'Generate content first! ⚡',
+    // Days for date formatting
+    days_short: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+    months_short: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    // Translate modal
+    translate_title: '🌐 Translate site',
+    translate_sub: 'Choose a language for the entire interface',
+    translate_note: 'The content language (in the form) is independent. You can mix.',
+    lang_native_names: { EN: 'English', FR: 'Français', ES: 'Español', DE: 'Deutsch', PT: 'Português', IT: 'Italiano' }
+  },
+  FR: {
+    nav_generator: 'Générateur', nav_features: 'Fonctionnalités', nav_pricing: 'Tarifs',
+    nav_schedule: 'Mon planning', nav_try_free: 'Essayer', nav_translate: 'Traduire le site',
+    hero_badge: '12 847 créateurs en croissance cette semaine',
+    hero_h1_1: 'Arrête de deviner.', hero_h1_2: 'Commence à devenir viral.',
+    hero_sub: 'Hooks, scripts et légendes IA pour TikTok, Reels et Shorts. <strong>Avec Virality Score</strong> et <strong>6 langues</strong>. Génère 30 jours de contenu en 5 minutes.',
+    hero_cta_primary: 'Générer des hooks gratuits →',
+    hero_cta_secondary: 'Voir les tarifs',
+    stat_hooks: 'Hooks générés', stat_per_gen: 'Par génération', stat_boost: 'Boost moyen',
+    gen_title: 'Essaie maintenant — c\'est gratuit',
+    gen_sub: 'Pas d\'inscription. Pas de carte. Que des résultats.',
+    field_niche: 'Ta niche', niche_ph: 'ex. fitness, cuisine, SaaS, séduction',
+    field_platform: 'Plateforme',
+    platform_tiktok: 'TikTok', platform_reels: 'Instagram Reels', platform_shorts: 'YouTube Shorts', platform_linkedin: 'LinkedIn',
+    field_topic: 'Sujet de la vidéo', topic_ph: 'ex. 5 habitudes matinales des gens qui réussissent',
+    field_tone: 'Ton',
+    tone_controversial: 'Polémique / Avis tranché',
+    tone_curious: 'Curieux / Question',
+    tone_shocking: 'Choquant / Stat',
+    tone_relatable: 'Relatable / Histoire',
+    tone_educational: 'Éducatif / How-to',
+    tone_funny: 'Drôle / Mème',
+    field_language: 'Langue de sortie', auto_detect: '✨ Auto-détecté',
+    btn_generate: '⚡ Générer des hooks viraux',
+    out_hooks: '🔥 5 hooks viraux',
+    out_script: '📝 Script complet (30-60s)',
+    out_caption: '✍️ Légende',
+    out_hashtags: '#️⃣ Hashtags',
+    out_schedule_prompt: '📅 Prêt à poster ? Programme un rappel pour ne pas oublier.',
+    out_schedule_btn: '📅 Programmer',
+    out_copy: 'Copier',
+    out_copied: 'Copié ✓',
+    out_score_strong: '🔥 Solide ! Viralité moyenne :',
+    out_score_avg: 'Score de viralité moyen :',
+    out_score_low: 'Moyenne : réessaie avec un autre ton.',
+    out_score_hint: 'Clique un score pour le détail',
+    engine_groq: '⚡ Généré par Groq (Llama 3.3 70B)',
+    engine_openai: '🧠 Généré par OpenAI (GPT-4o Mini)',
+    engine_template: '🎯 Généré par les templates Hookly',
+    engine_fallback: '⚠️ L\'IA a échoué, templates utilisés',
+    score_length: 'Longueur', score_power: 'Power words', score_pattern: 'Pattern interrupt',
+    score_strong_start: 'Démarrage fort', score_pronoun: 'Tutoiement', score_curiosity: 'Curiosity gap',
+    score_words: 'mots', score_detected: 'détecté(s)', score_signals: 'signaux détectés',
+    score_tip_too_long: 'Trop long — essaye de couper à 5-12 mots',
+    score_tip_too_short: 'Trop court — ajoute du contexte',
+    score_tip_sweet_spot: 'Sweet spot pour le short-form',
+    score_tip_try: 'Essaie :',
+    score_tip_strong: 'Solide',
+    score_tip_good_start: 'Bon début',
+    score_tip_pattern: 'Ajoute une question, un chiffre ou une contradiction',
+    score_tip_first_word: '✓ premier mot qui arrête le scroll',
+    score_tip_try_start: 'Essaie de commencer par :',
+    score_tip_speaks: 'Parle directement au viewer',
+    score_tip_add_you: 'Ajoute "tu" pour la connexion',
+    score_tip_opens_loop: 'Ouvre une boucle',
+    score_tip_tease: 'Tease plus — laisse deviner la réponse',
+    feat_title: 'Conçu pour les créateurs qui', feat_title_accent: 'postent tous les jours',
+    feat_sub: 'Tout ce qu\'il faut pour ne plus jamais se retrouver face à une page blanche.',
+    feat_1_title: 'Génération en 10 secondes', feat_1_desc: 'Tape ton sujet. Reçois 5 hooks, un script complet, et des hashtags. Poursuis ta journée.',
+    feat_2_title: 'Virality Score', feat_2_desc: 'Chaque hook reçoit un score 0-100 avec détail : longueur, power words, pattern interrupt, curiosity gap. Sache ce qui marchera AVANT de poster.',
+    feat_3_title: '6 langues', feat_3_desc: 'Anglais, français, espagnol, allemand, portugais, italien. Power words natifs — pas de traductions automatiques.',
+    feat_4_title: 'Entraîné sur du contenu viral', feat_4_desc: 'Notre modèle a analysé 100K+ vidéos virales. Il sait ce qui arrête le scroll.',
+    feat_5_title: '6 styles de hooks', feat_5_desc: 'Polémique, curieux, choquant, relatable, éducatif, drôle. Adapte à ta marque.',
+    feat_6_title: 'Calendrier 30 jours', feat_6_desc: 'Passe en Pro : un mois entier de hooks auto-générés. Ne sois plus jamais en panne d\'idées.',
+    feat_7_title: 'Voix-off IA', feat_7_desc: 'Plan Pro : transforme tes scripts en voix-off studio dans le ton que tu veux.',
+    feat_8_title: 'Auto-post TikTok', feat_8_desc: 'Plan Pro : programme et publie directement. Configure, oublie, réveille-toi avec des vues.',
+    badge_new: 'NOUVEAU',
+    dash_title: 'Tes', dash_title_accent: 'posts programmés',
+    dash_sub: 'Les rappels que tu as configurés. Tape pour copier, modifier ou supprimer.',
+    dash_empty: '📅 Aucun post programmé. Génère du contenu et clique sur "Programmer".',
+    dash_copy: '📋 Copier la légende', dash_remove: '🗑️',
+    price_title: 'Des tarifs qui', price_title_accent: 'se remboursent tout seuls',
+    price_sub: 'Une vidéo virale = des milliers d\'euros en deals. On coûte moins cher que ton café.',
+    price_free_name: 'Gratuit', price_free_desc: 'Teste la magie', price_free_period: '/à vie',
+    price_pro_name: 'Pro', price_pro_desc: 'Pour créateurs sérieux', price_pro_period: '/mois',
+    price_agency_name: 'Agence', price_agency_desc: 'Pour équipes & marques', price_agency_period: '/mois',
+    price_popular: 'LE PLUS POPULAIRE',
+    price_f_1: '5 générations / jour', price_f_2: '5 hooks par génération',
+    price_f_3: 'Propulsé par templates intelligents', price_f_4: 'Les 6 styles de hooks',
+    price_f_5: 'Rappels programmés', price_f_6: 'Apporte ta propre clé IA',
+    price_f_7: 'Générations illimitées', price_f_8: 'IA réelle (Llama 3.3 70B ou GPT-4o)',
+    price_f_9: 'Calendrier 30 jours', price_f_10: 'Alertes tendances',
+    price_f_11: 'Voix-off IA (10 voix)', price_f_12: 'Support prioritaire',
+    price_f_13: 'Tout du Pro', price_f_14: '10 sièges équipe',
+    price_f_15: 'Rapports white-label', price_f_16: 'Accès API',
+    price_f_17: 'Account manager dédié',
+    price_cta_free: 'Commencer gratuitement', price_cta_pro: 'Passer Pro →', price_cta_agency: 'Nous contacter',
+    price_stripe_soon: 'Checkout Stripe bientôt dispo ! 🚀',
+    price_contact_soon: 'Contact équipe commerciale bientôt ! 🚀',
+    footer_copy: '© 2026 Hookly · Conçu pour les créateurs qui ne veulent pas perdre de temps ·',
+    footer_terms: 'CGU & confidentialité', footer_ai: 'Politique IA',
+    set_title: '⚙️ Paramètres IA',
+    set_sub: 'Apporte ta propre clé API pour débloquer la génération premium. Ou reste sur le moteur gratuit — il marche bien.',
+    set_provider: 'Fournisseur IA',
+    set_provider_free: '🆓 Gratuit (templates) — fonctionne hors-ligne, pas de clé',
+    set_provider_groq: '⚡ Groq (tier gratuit dispo, ultra-rapide)',
+    set_provider_openai: '🧠 OpenAI (payant, meilleure qualité)',
+    set_groq_key: 'Clé API Groq', set_groq_free: '(crée-en une gratuitement sur', set_groq_url: 'console.groq.com',
+    set_openai_key: 'Clé API OpenAI', set_openai_at: '(crée-en une sur', set_openai_url: 'platform.openai.com',
+    set_groq_model: 'Modèle Groq',
+    set_groq_1: 'Llama 3.3 70B (recommandé, meilleure qualité)',
+    set_groq_2: 'Llama 3.1 8B (plus rapide, tier gratuit)',
+    set_groq_3: 'Mixtral 8x7B (équilibré)',
+    set_openai_model: 'Modèle OpenAI',
+    set_openai_1: 'GPT-4o Mini (pas cher, rapide, top qualité)',
+    set_openai_2: 'GPT-4o (meilleure qualité, cher)',
+    set_openai_3: 'GPT-3.5 Turbo (le moins cher)',
+    set_badge_label: 'Afficher le moteur IA qui a généré (transparence)',
+    set_security: '🔒', set_security_bold: 'Tes clés restent dans ton navigateur', set_security_after: '(localStorage). Elles ne touchent jamais nos serveurs. On ne les voit pas, on ne les log pas, on ne les partage pas.',
+    set_save: 'Sauvegarder', set_test: '🧪 Tester la connexion',
+    set_test_ok: '✅ Connexion OK !', set_test_template: 'Le moteur de templates est toujours dispo ✓',
+    set_test_no_key_groq: 'Entre d\'abord une clé Groq', set_test_no_key_openai: 'Entre d\'abord une clé OpenAI',
+    set_testing: 'Test en cours... ⏳', set_saved: 'Paramètres sauvegardés ✓',
+    sched_title: '📅 Programmer ce post',
+    sched_sub: 'Choisis quand poster. On te rappellera avec tout pré-copié.',
+    sched_best_times: 'Meilleurs moments pour poster sur',
+    sched_field_date: 'Date', sched_field_time: 'Heure',
+    sched_notify: '🔔 Envoie-moi une notif navigateur à l\'heure (légende + hashtags pré-copiés)',
+    sched_gcal: '📅 Ajouter à Google Calendar',
+    sched_ics: '⬇️ Télécharger .ics (Apple Calendar, Outlook, etc.)',
+    sched_local: "💾 Sauvegarder ici (je verrai le dashboard)",
+    sched_best_chip: 'TOP',
+    sched_pick_first: 'Choisis d\'abord une date et heure 📅',
+    sched_past: 'Cette heure est déjà passée ⏰',
+    sched_reminder_set: '🔔 Rappel configuré ! On te notifiera.',
+    sched_saved_no_notify: 'Sauvegardé ✓ (active les notifs pour les rappels)',
+    sched_saved: 'Sauvegardé dans ton planning ✓',
+    sched_dl: 'Fichier calendrier téléchargé ✓',
+    sched_removed: 'Supprimé',
+    sched_gen_first: 'Génère d\'abord du contenu ! ⚡',
+    days_short: ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam'],
+    months_short: ['janv', 'févr', 'mars', 'avr', 'mai', 'juin', 'juil', 'août', 'sept', 'oct', 'nov', 'déc'],
+    translate_title: '🌐 Traduire le site',
+    translate_sub: 'Choisis une langue pour toute l\'interface',
+    translate_note: 'La langue du contenu (dans le formulaire) est indépendante. Tu peux mixer.',
+    lang_native_names: { EN: 'English', FR: 'Français', ES: 'Español', DE: 'Deutsch', PT: 'Português', IT: 'Italiano' }
+  },
+  ES: {
+    nav_generator: 'Generador', nav_features: 'Funciones', nav_pricing: 'Precios',
+    nav_schedule: 'Mi calendario', nav_try_free: 'Probar gratis', nav_translate: 'Traducir sitio',
+    hero_badge: '12.847 creadores creciendo esta semana',
+    hero_h1_1: 'Deja de adivinar.', hero_h1_2: 'Empieza a ser viral.',
+    hero_sub: 'Hooks, guiones y captions con IA para TikTok, Reels y Shorts. <strong>Con Virality Score</strong> y <strong>6 idiomas</strong>. Genera 30 días de contenido en 5 minutos.',
+    hero_cta_primary: 'Generar hooks gratis →',
+    hero_cta_secondary: 'Ver precios',
+    stat_hooks: 'Hooks generados', stat_per_gen: 'Por generación', stat_boost: 'Aumento medio',
+    gen_title: 'Pruébalo ahora — es gratis',
+    gen_sub: 'Sin registro. Sin tarjeta. Solo resultados.',
+    field_niche: 'Tu nicho', niche_ph: 'ej. fitness, cocina, SaaS, citas',
+    field_platform: 'Plataforma',
+    platform_tiktok: 'TikTok', platform_reels: 'Instagram Reels', platform_shorts: 'YouTube Shorts', platform_linkedin: 'LinkedIn',
+    field_topic: 'Tema del vídeo', topic_ph: 'ej. 5 hábitos matutinos de personas exitosas',
+    field_tone: 'Tono',
+    tone_controversial: 'Polémico / Opinión fuerte',
+    tone_curious: 'Curioso / Pregunta',
+    tone_shocking: 'Impactante / Dato',
+    tone_relatable: 'Relatable / Historia',
+    tone_educational: 'Educativo / Tutorial',
+    tone_funny: 'Gracioso / Meme',
+    field_language: 'Idioma de salida', auto_detect: '✨ Auto-detectado',
+    btn_generate: '⚡ Generar hooks virales',
+    out_hooks: '🔥 5 hooks virales',
+    out_script: '📝 Guion completo (30-60s)',
+    out_caption: '✍️ Caption',
+    out_hashtags: '#️⃣ Hashtags',
+    out_schedule_prompt: '📅 ¿Listo para publicar? Programa un recordatorio para no olvidarlo.',
+    out_schedule_btn: '📅 Programar',
+    out_copy: 'Copiar',
+    out_copied: 'Copiado ✓',
+    out_score_strong: '🔥 ¡Lote fuerte! Viralidad media:',
+    out_score_avg: 'Puntuación de viralidad media:',
+    out_score_low: 'Media: prueba con otro tono.',
+    out_score_hint: 'Click en una puntuación para el detalle',
+    engine_groq: '⚡ Generado por Groq (Llama 3.3 70B)',
+    engine_openai: '🧠 Generado por OpenAI (GPT-4o Mini)',
+    engine_template: '🎯 Generado por plantillas Hookly',
+    engine_fallback: '⚠️ IA falló, usando plantillas',
+    score_length: 'Longitud', score_power: 'Power words', score_pattern: 'Pattern interrupt',
+    score_strong_start: 'Inicio fuerte', score_pronoun: 'Trato directo', score_curiosity: 'Curiosity gap',
+    score_words: 'palabras', score_detected: 'detectado(s)', score_signals: 'señales detectadas',
+    score_tip_too_long: 'Demasiado largo — intenta recortar a 5-12 palabras',
+    score_tip_too_short: 'Demasiado corto — añade contexto',
+    score_tip_sweet_spot: 'Punto ideal para short-form',
+    score_tip_try: 'Prueba:',
+    score_tip_strong: 'Fuerte',
+    score_tip_good_start: 'Buen inicio',
+    score_tip_pattern: 'Añade una pregunta, número o contradicción',
+    score_tip_first_word: '✓ primera palabra que detiene el scroll',
+    score_tip_try_start: 'Intenta empezar con:',
+    score_tip_speaks: 'Habla directamente al viewer',
+    score_tip_add_you: 'Añade "tú" para conectar',
+    score_tip_opens_loop: 'Abre un bucle',
+    score_tip_tease: 'Genera más intriga — insinúa la respuesta',
+    feat_title: 'Hecho para creadores que', feat_title_accent: 'publican a diario',
+    feat_sub: 'Todo lo que necesitas para no volver a mirar una página en blanco.',
+    feat_1_title: 'Generación en 10 segundos', feat_1_desc: 'Escribe tu tema. Recibe 5 hooks, un guion completo y hashtags. Sigue con tu día.',
+    feat_2_title: 'Virality Score', feat_2_desc: 'Cada hook recibe una puntuación 0-100 con detalle: longitud, power words, pattern interrupt, curiosity gap. Sabe qué funcionará ANTES de publicar.',
+    feat_3_title: '6 idiomas', feat_3_desc: 'Inglés, francés, español, alemán, portugués, italiano. Power words nativos — no malas traducciones.',
+    feat_4_title: 'Entrenado en contenido viral', feat_4_desc: 'Nuestro modelo ha analizado 100K+ vídeos virales. Sabe lo que detiene el scroll.',
+    feat_5_title: '6 estilos de hook', feat_5_desc: 'Polémico, curioso, impactante, relatable, educativo, gracioso. Adapta a tu marca.',
+    feat_6_title: 'Calendario de 30 días', feat_6_desc: 'Pásate a Pro: un mes entero de hooks auto-generados. Nunca te quedes sin ideas.',
+    feat_7_title: 'Voz IA', feat_7_desc: 'Plan Pro: convierte guiones en voces de estudio en el tono que prefieras.',
+    feat_8_title: 'Auto-post en TikTok', feat_8_desc: 'Plan Pro: programa y publica directamente. Configura, olvida, despierta con vistas.',
+    badge_new: 'NUEVO',
+    dash_title: 'Tus', dash_title_accent: 'posts programados',
+    dash_sub: 'Recordatorios que has configurado. Toca para copiar, editar o eliminar.',
+    dash_empty: '📅 Sin posts programados. Genera contenido arriba y pulsa "Programar".',
+    dash_copy: '📋 Copiar caption', dash_remove: '🗑️',
+    price_title: 'Precios que', price_title_accent: 'se pagan solos',
+    price_sub: 'Un vídeo viral = miles en colaboraciones. Cuestas menos que tu café.',
+    price_free_name: 'Gratis', price_free_desc: 'Prueba la magia', price_free_period: '/para siempre',
+    price_pro_name: 'Pro', price_pro_desc: 'Para creadores serios', price_pro_period: '/mes',
+    price_agency_name: 'Agencia', price_agency_desc: 'Para equipos y marcas', price_agency_period: '/mes',
+    price_popular: 'MÁS POPULAR',
+    price_f_1: '5 generaciones / día', price_f_2: '5 hooks por generación',
+    price_f_3: 'Plantillas inteligentes', price_f_4: 'Los 6 estilos de hook',
+    price_f_5: 'Recordatorios', price_f_6: 'Trae tu propia clave IA',
+    price_f_7: 'Generaciones ilimitadas', price_f_8: 'IA real (Llama 3.3 70B o GPT-4o)',
+    price_f_9: 'Calendario 30 días', price_f_10: 'Alertas de tendencias',
+    price_f_11: 'Voz IA (10 voces)', price_f_12: 'Soporte prioritario',
+    price_f_13: 'Todo del Pro', price_f_14: '10 asientos de equipo',
+    price_f_15: 'Informes white-label', price_f_16: 'Acceso API',
+    price_f_17: 'Account manager dedicado',
+    price_cta_free: 'Empezar gratis', price_cta_pro: 'Hazte Pro →', price_cta_agency: 'Contactar ventas',
+    price_stripe_soon: '¡Checkout Stripe pronto! 🚀',
+    price_contact_soon: '¡Contacto de ventas pronto! 🚀',
+    footer_copy: '© 2026 Hookly · Hecho para creadores que no quieren perder el tiempo ·',
+    footer_terms: 'Términos y privacidad', footer_ai: 'Política de IA',
+    set_title: '⚙️ Ajustes de IA',
+    set_sub: 'Trae tu propia clave API para desbloquear la generación premium. O quédate con el motor gratuito — funciona bien.',
+    set_provider: 'Proveedor de IA',
+    set_provider_free: '🆓 Gratis (plantillas) — funciona sin conexión, sin clave',
+    set_provider_groq: '⚡ Groq (tier gratis disponible, ultra-rápido)',
+    set_provider_openai: '🧠 OpenAI (pago, máxima calidad)',
+    set_groq_key: 'Clave API Groq', set_groq_free: '(obtén una gratis en', set_groq_url: 'console.groq.com',
+    set_openai_key: 'Clave API OpenAI', set_openai_at: '(obtén una en', set_openai_url: 'platform.openai.com',
+    set_groq_model: 'Modelo Groq',
+    set_groq_1: 'Llama 3.3 70B (recomendado, mejor calidad)',
+    set_groq_2: 'Llama 3.1 8B (más rápido, tier gratis)',
+    set_groq_3: 'Mixtral 8x7B (equilibrado)',
+    set_openai_model: 'Modelo OpenAI',
+    set_openai_1: 'GPT-4o Mini (barato, rápido, gran calidad)',
+    set_openai_2: 'GPT-4o (mejor calidad, caro)',
+    set_openai_3: 'GPT-3.5 Turbo (el más barato)',
+    set_badge_label: 'Mostrar qué motor IA generó esto (transparencia)',
+    set_security: '🔒', set_security_bold: 'Tus claves se quedan en tu navegador', set_security_after: '(localStorage). Nunca tocan nuestros servidores. No las vemos, no las logueamos, no las compartimos.',
+    set_save: 'Guardar ajustes', set_test: '🧪 Probar conexión',
+    set_test_ok: '✅ ¡Conexión OK!', set_test_template: 'El motor de plantillas siempre está disponible ✓',
+    set_test_no_key_groq: 'Primero introduce una clave Groq', set_test_no_key_openai: 'Primero introduce una clave OpenAI',
+    set_testing: 'Probando... ⏳', set_saved: 'Ajustes guardados ✓',
+    sched_title: '📅 Programar este post',
+    sched_sub: 'Elige cuándo publicar. Te recordaremos con todo pre-copiado.',
+    sched_best_times: 'Mejores horas para publicar en',
+    sched_field_date: 'Fecha', sched_field_time: 'Hora',
+    sched_notify: '🔔 Envíame una notificación cuando sea la hora (caption + hashtags pre-copiados)',
+    sched_gcal: '📅 Añadir a Google Calendar',
+    sched_ics: '⬇️ Descargar .ics (Apple Calendar, Outlook, etc.)',
+    sched_local: '💾 Solo guardar aquí (lo veré en el dashboard)',
+    sched_best_chip: 'TOP',
+    sched_pick_first: 'Elige primero fecha y hora 📅',
+    sched_past: 'Esa hora ya pasó ⏰',
+    sched_reminder_set: '🔔 ¡Recordatorio configurado! Te avisaremos.',
+    sched_saved_no_notify: 'Guardado ✓ (activa notificaciones para recordatorios)',
+    sched_saved: 'Guardado en tu calendario ✓',
+    sched_dl: 'Archivo de calendario descargado ✓',
+    sched_removed: 'Eliminado',
+    sched_gen_first: '¡Genera primero contenido! ⚡',
+    days_short: ['dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb'],
+    months_short: ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'],
+    translate_title: '🌐 Traducir sitio',
+    translate_sub: 'Elige un idioma para toda la interfaz',
+    translate_note: 'El idioma del contenido (en el formulario) es independiente. Puedes mezclar.',
+    lang_native_names: { EN: 'English', FR: 'Français', ES: 'Español', DE: 'Deutsch', PT: 'Português', IT: 'Italiano' }
+  },
+  DE: {
+    nav_generator: 'Generator', nav_features: 'Funktionen', nav_pricing: 'Preise',
+    nav_schedule: 'Mein Kalender', nav_try_free: 'Kostenlos testen', nav_translate: 'Website übersetzen',
+    hero_badge: '12.847 Creator wachsen diese Woche',
+    hero_h1_1: 'Schluss mit Raten.', hero_h1_2: 'Starte viral durch.',
+    hero_sub: 'KI-gestützte Hooks, Skripte und Captions für TikTok, Reels und Shorts. <strong>Mit Virality Score</strong> und <strong>6 Sprachen</strong>. Generiere 30 Tage Content in 5 Minuten.',
+    hero_cta_primary: 'Kostenlose Hooks generieren →',
+    hero_cta_secondary: 'Preise ansehen',
+    stat_hooks: 'Generierte Hooks', stat_per_gen: 'Pro Generation', stat_boost: 'Ø View-Boost',
+    gen_title: 'Jetzt testen — kostenlos',
+    gen_sub: 'Keine Anmeldung. Keine Kreditkarte. Nur Ergebnisse.',
+    field_niche: 'Deine Nische', niche_ph: 'z.B. Fitness, Kochen, SaaS, Dating',
+    field_platform: 'Plattform',
+    platform_tiktok: 'TikTok', platform_reels: 'Instagram Reels', platform_shorts: 'YouTube Shorts', platform_linkedin: 'LinkedIn',
+    field_topic: 'Video-Thema', topic_ph: 'z.B. 5 Morgengewohnheiten erfolgreicher Menschen',
+    field_tone: 'Ton',
+    tone_controversial: 'Kontrovers / Heiße These',
+    tone_curious: 'Neugierig / Frage',
+    tone_shocking: 'Schockierend / Statistik',
+    tone_relatable: 'Relatable / Story',
+    tone_educational: 'Lehrreich / How-to',
+    tone_funny: 'Lustig / Meme',
+    field_language: 'Ausgabesprache', auto_detect: '✨ Auto-erkannt',
+    btn_generate: '⚡ Virale Hooks generieren',
+    out_hooks: '🔥 5 virale Hooks',
+    out_script: '📝 Komplettes Skript (30-60s)',
+    out_caption: '✍️ Caption',
+    out_hashtags: '#️⃣ Hashtags',
+    out_schedule_prompt: '📅 Bereit zu posten? Plane eine Erinnerung, damit du es nicht vergisst.',
+    out_schedule_btn: '📅 Planen',
+    out_copy: 'Kopieren',
+    out_copied: 'Kopiert ✓',
+    out_score_strong: '🔥 Starkes Set! Durchschnittliche Viralität:',
+    out_score_avg: 'Durchschnittlicher Virality-Score:',
+    out_score_low: 'Durchschnitt: Versuche einen anderen Ton.',
+    out_score_hint: 'Klick auf einen Score für Details',
+    engine_groq: '⚡ Generiert von Groq (Llama 3.3 70B)',
+    engine_openai: '🧠 Generiert von OpenAI (GPT-4o Mini)',
+    engine_template: '🎯 Generiert von Hookly-Templates',
+    engine_fallback: '⚠️ KI fehlgeschlagen, Templates verwendet',
+    score_length: 'Länge', score_power: 'Power Words', score_pattern: 'Pattern Interrupt',
+    score_strong_start: 'Starker Start', score_pronoun: 'Du-Ansprache', score_curiosity: 'Curiosity Gap',
+    score_words: 'Wörter', score_detected: 'erkannt', score_signals: 'Signale erkannt',
+    score_tip_too_long: 'Zu lang — versuche auf 5-12 Wörter zu kürzen',
+    score_tip_too_short: 'Zu kurz — füge Kontext hinzu',
+    score_tip_sweet_spot: 'Sweet Spot für Short-Form',
+    score_tip_try: 'Versuche:',
+    score_tip_strong: 'Stark',
+    score_tip_good_start: 'Guter Start',
+    score_tip_pattern: 'Füge eine Frage, Zahl oder einen Widerspruch hinzu',
+    score_tip_first_word: '✓ erstes Wort stoppt den Scroll',
+    score_tip_try_start: 'Versuche zu starten mit:',
+    score_tip_speaks: 'Spricht den Viewer direkt an',
+    score_tip_add_you: 'Füge "du" hinzu für Verbindung',
+    score_tip_opens_loop: 'Öffnet eine Schleife',
+    score_tip_tease: 'Mehr anteasern — die Antwort nur andeuten',
+    feat_title: 'Für Creator, die', feat_title_accent: 'täglich posten',
+    feat_sub: 'Alles, was du brauchst, um nie wieder auf eine leere Seite zu starren.',
+    feat_1_title: '10-Sekunden-Generation', feat_1_desc: 'Thema eintippen. 5 Hooks, ein Skript und Hashtags erhalten. Weiter im Tag.',
+    feat_2_title: 'Virality Score', feat_2_desc: 'Jeder Hook bekommt 0-100 mit Aufschlüsselung: Länge, Power Words, Pattern Interrupt, Curiosity Gap. Weiß vorher, was funktioniert.',
+    feat_3_title: '6 Sprachen', feat_3_desc: 'Englisch, Französisch, Spanisch, Deutsch, Portugiesisch, Italienisch. Native Power Words — keine schlechten Übersetzungen.',
+    feat_4_title: 'Auf viralem Content trainiert', feat_4_desc: 'Unser Modell hat 100K+ virale Videos analysiert. Es weiß, was den Scroll stoppt.',
+    feat_5_title: '6 Hook-Stile', feat_5_desc: 'Kontrovers, neugierig, schockierend, relatable, lehrreich, lustig. Passe an deine Marke an.',
+    feat_6_title: '30-Tage-Content-Kalender', feat_6_desc: 'Upgrade auf Pro: ein ganzer Monat Hooks auto-generiert. Nie wieder Ideen-Block.',
+    feat_7_title: 'KI-Voice-over', feat_7_desc: 'Pro-Plan: Skripte in Studioqualität-Voice-overs verwandeln.',
+    feat_8_title: 'Auto-Post auf TikTok', feat_8_desc: 'Pro-Plan: direkt planen und posten. Einstellen, vergessen, mit Views aufwachen.',
+    badge_new: 'NEU',
+    dash_title: 'Deine', dash_title_accent: 'geplanten Posts',
+    dash_sub: 'Erinnerungen, die du gesetzt hast. Tippen zum Kopieren, Bearbeiten oder Löschen.',
+    dash_empty: '📅 Keine geplanten Posts. Generiere Content und klicke "Planen".',
+    dash_copy: '📋 Caption kopieren', dash_remove: '🗑️',
+    price_title: 'Preise, die', price_title_accent: 'sich selbst zahlen',
+    price_sub: 'Ein virales Video = tausende Markendeals. Wir kosten weniger als dein Morgenkaffee.',
+    price_free_name: 'Gratis', price_free_desc: 'Teste die Magie', price_free_period: '/für immer',
+    price_pro_name: 'Pro', price_pro_desc: 'Für ernsthafte Creator', price_pro_period: '/Monat',
+    price_agency_name: 'Agentur', price_agency_desc: 'Für Teams & Marken', price_agency_period: '/Monat',
+    price_popular: 'AM BELIEBTESTEN',
+    price_f_1: '5 Generationen / Tag', price_f_2: '5 Hooks pro Generation',
+    price_f_3: 'Intelligente Templates', price_f_4: 'Alle 6 Hook-Stile',
+    price_f_5: 'Erinnerungen', price_f_6: 'Eigener API-Key',
+    price_f_7: 'Unbegrenzte Generationen', price_f_8: 'Echte KI (Llama 3.3 70B oder GPT-4o)',
+    price_f_9: '30-Tage-Kalender', price_f_10: 'Trend-Alerts',
+    price_f_11: 'KI-Voice-over (10 Stimmen)', price_f_12: 'Priority-Support',
+    price_f_13: 'Alles aus Pro', price_f_14: '10 Team-Sitze',
+    price_f_15: 'White-Label-Reports', price_f_16: 'API-Zugang',
+    price_f_17: 'Dedizierter Account Manager',
+    price_cta_free: 'Gratis starten', price_cta_pro: 'Pro holen →', price_cta_agency: 'Vertrieb kontaktieren',
+    price_stripe_soon: 'Stripe-Checkout bald! 🚀',
+    price_contact_soon: 'Vertriebs-Team bald verfügbar! 🚀',
+    footer_copy: '© 2026 Hookly · Für Creator, die keine Zeit verschwenden wollen ·',
+    footer_terms: 'AGB & Datenschutz', footer_ai: 'KI-Richtlinie',
+    set_title: '⚙️ KI-Einstellungen',
+    set_sub: 'Bring deinen eigenen API-Key mit für Premium-Generierung. Oder bleib bei der Gratis-Template-Engine — funktioniert gut.',
+    set_provider: 'KI-Anbieter',
+    set_provider_free: '🆓 Gratis (Templates) — funktioniert offline, kein Key nötig',
+    set_provider_groq: '⚡ Groq (Gratis-Tier verfügbar, ultra-schnell)',
+    set_provider_openai: '🧠 OpenAI (kostenpflichtig, beste Qualität)',
+    set_groq_key: 'Groq API-Key', set_groq_free: '(kostenlos auf', set_groq_url: 'console.groq.com',
+    set_openai_key: 'OpenAI API-Key', set_openai_at: '(erhältlich auf', set_openai_url: 'platform.openai.com',
+    set_groq_model: 'Groq-Modell',
+    set_groq_1: 'Llama 3.3 70B (empfohlen, beste Qualität)',
+    set_groq_2: 'Llama 3.1 8B (schnellstes, Gratis-Tier-freundlich)',
+    set_groq_3: 'Mixtral 8x7B (ausgewogen)',
+    set_openai_model: 'OpenAI-Modell',
+    set_openai_1: 'GPT-4o Mini (günstig, schnell, top Qualität)',
+    set_openai_2: 'GPT-4o (beste Qualität, teuer)',
+    set_openai_3: 'GPT-3.5 Turbo (am günstigsten)',
+    set_badge_label: 'Zeigen, welche KI-Engine das generiert hat (Transparenz)',
+    set_security: '🔒', set_security_bold: 'Deine Keys bleiben in deinem Browser', set_security_after: '(localStorage). Sie berühren nie unsere Server. Wir sehen sie nicht, loggen sie nicht, teilen sie nicht.',
+    set_save: 'Einstellungen speichern', set_test: '🧪 Verbindung testen',
+    set_test_ok: '✅ Verbindung OK!', set_test_template: 'Template-Engine immer verfügbar ✓',
+    set_test_no_key_groq: 'Erst Groq-Key eingeben', set_test_no_key_openai: 'Erst OpenAI-Key eingeben',
+    set_testing: 'Teste... ⏳', set_saved: 'Einstellungen gespeichert ✓',
+    sched_title: '📅 Diesen Post planen',
+    sched_sub: 'Wähle, wann du posten willst. Wir erinnern dich mit allem vorkopiert.',
+    sched_best_times: 'Beste Zeiten zum Posten auf',
+    sched_field_date: 'Datum', sched_field_time: 'Uhrzeit',
+    sched_notify: '🔔 Schick mir eine Browser-Benachrichtigung, wenn es soweit ist (Caption + Hashtags werden in die Zwischenablage kopiert)',
+    sched_gcal: '📅 Zu Google Calendar hinzufügen',
+    sched_ics: '⬇️ .ics herunterladen (Apple Calendar, Outlook, etc.)',
+    sched_local: '💾 Nur hier speichern (Dashboard checke ich)',
+    sched_best_chip: 'TOP',
+    sched_pick_first: 'Erst Datum und Uhrzeit wählen 📅',
+    sched_past: 'Diese Zeit ist vorbei ⏰',
+    sched_reminder_set: '🔔 Erinnerung gesetzt! Wir benachrichtigen dich.',
+    sched_saved_no_notify: 'Gespeichert ✓ (aktiviere Benachrichtigungen für Erinnerungen)',
+    sched_saved: 'In deinen Kalender gespeichert ✓',
+    sched_dl: 'Kalender-Datei heruntergeladen ✓',
+    sched_removed: 'Entfernt',
+    sched_gen_first: 'Erst Content generieren! ⚡',
+    days_short: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
+    months_short: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+    translate_title: '🌐 Website übersetzen',
+    translate_sub: 'Wähle eine Sprache für die gesamte Oberfläche',
+    translate_note: 'Die Content-Sprache (im Formular) ist unabhängig. Du kannst mischen.',
+    lang_native_names: { EN: 'English', FR: 'Français', ES: 'Español', DE: 'Deutsch', PT: 'Português', IT: 'Italiano' }
+  },
+  PT: {
+    nav_generator: 'Gerador', nav_features: 'Recursos', nav_pricing: 'Preços',
+    nav_schedule: 'Meu calendário', nav_try_free: 'Testar grátis', nav_translate: 'Traduzir site',
+    hero_badge: '12.847 criadores crescendo esta semana',
+    hero_h1_1: 'Pare de adivinhar.', hero_h1_2: 'Comece a viralizar.',
+    hero_sub: 'Hooks, roteiros e legendas com IA para TikTok, Reels e Shorts. <strong>Com Virality Score</strong> e <strong>6 idiomas</strong>. Gere 30 dias de conteúdo em 5 minutos.',
+    hero_cta_primary: 'Gerar hooks grátis →',
+    hero_cta_secondary: 'Ver preços',
+    stat_hooks: 'Hooks gerados', stat_per_gen: 'Por geração', stat_boost: 'Aumento médio',
+    gen_title: 'Teste agora — é grátis',
+    gen_sub: 'Sem cadastro. Sem cartão. Só resultados.',
+    field_niche: 'Seu nicho', niche_ph: 'ex. fitness, culinária, SaaS, namoro',
+    field_platform: 'Plataforma',
+    platform_tiktok: 'TikTok', platform_reels: 'Instagram Reels', platform_shorts: 'YouTube Shorts', platform_linkedin: 'LinkedIn',
+    field_topic: 'Tópico do vídeo', topic_ph: 'ex. 5 hábitos matinais de pessoas de sucesso',
+    field_tone: 'Tom',
+    tone_controversial: 'Polêmico / Opinião forte',
+    tone_curious: 'Curioso / Pergunta',
+    tone_shocking: 'Chocante / Dado',
+    tone_relatable: 'Relatable / História',
+    tone_educational: 'Educativo / Tutorial',
+    tone_funny: 'Engraçado / Meme',
+    field_language: 'Idioma de saída', auto_detect: '✨ Auto-detectado',
+    btn_generate: '⚡ Gerar hooks virais',
+    out_hooks: '🔥 5 hooks virais',
+    out_script: '📝 Roteiro completo (30-60s)',
+    out_caption: '✍️ Legenda',
+    out_hashtags: '#️⃣ Hashtags',
+    out_schedule_prompt: '📅 Pronto pra postar? Agende um lembrete pra não esquecer.',
+    out_schedule_btn: '📅 Agendar',
+    out_copy: 'Copiar',
+    out_copied: 'Copiado ✓',
+    out_score_strong: '🔥 Lote forte! Viralidade média:',
+    out_score_avg: 'Pontuação de viralidade média:',
+    out_score_low: 'Média: tente outro tom.',
+    out_score_hint: 'Clique numa pontuação para detalhes',
+    engine_groq: '⚡ Gerado por Groq (Llama 3.3 70B)',
+    engine_openai: '🧠 Gerado por OpenAI (GPT-4o Mini)',
+    engine_template: '🎯 Gerado por templates Hookly',
+    engine_fallback: '⚠️ IA falhou, usando templates',
+    score_length: 'Comprimento', score_power: 'Power words', score_pattern: 'Pattern interrupt',
+    score_strong_start: 'Início forte', score_pronoun: 'Fala direta', score_curiosity: 'Curiosity gap',
+    score_words: 'palavras', score_detected: 'detectado(s)', score_signals: 'sinais detectados',
+    score_tip_too_long: 'Muito longo — tente cortar para 5-12 palavras',
+    score_tip_too_short: 'Muito curto — adicione contexto',
+    score_tip_sweet_spot: 'Ponto ideal para short-form',
+    score_tip_try: 'Tente:',
+    score_tip_strong: 'Forte',
+    score_tip_good_start: 'Bom começo',
+    score_tip_pattern: 'Adicione uma pergunta, número ou contradição',
+    score_tip_first_word: '✓ primeira palavra que para o scroll',
+    score_tip_try_start: 'Tente começar com:',
+    score_tip_speaks: 'Fala diretamente com o viewer',
+    score_tip_add_you: 'Adicione "você" para conexão',
+    score_tip_opens_loop: 'Abre um loop',
+    score_tip_tease: 'Dê mais suspense — sugira a resposta',
+    feat_title: 'Feito para criadores que', feat_title_accent: 'postam todo dia',
+    feat_sub: 'Tudo que você precisa pra nunca mais encarar uma página em branco.',
+    feat_1_title: 'Geração em 10 segundos', feat_1_desc: 'Digite seu tópico. Receba 5 hooks, um roteiro e hashtags. Siga seu dia.',
+    feat_2_title: 'Virality Score', feat_2_desc: 'Cada hook recebe 0-100 com detalhamento: comprimento, power words, pattern interrupt, curiosity gap. Saiba o que funciona ANTES de postar.',
+    feat_3_title: '6 idiomas', feat_3_desc: 'Inglês, francês, espanhol, alemão, português, italiano. Power words nativos — não traduções ruins.',
+    feat_4_title: 'Treinado em conteúdo viral', feat_4_desc: 'Nosso modelo analisou 100K+ vídeos virais. Sabe o que para o scroll.',
+    feat_5_title: '6 estilos de hook', feat_5_desc: 'Polêmico, curioso, chocante, relatable, educativo, engraçado. Adapte à sua marca.',
+    feat_6_title: 'Calendário de 30 dias', feat_6_desc: 'Passe pra Pro: um mês inteiro de hooks auto-gerados. Nunca mais fique sem ideias.',
+    feat_7_title: 'Voz IA', feat_7_desc: 'Plano Pro: transforme roteiros em voice-overs de estúdio no tom que preferir.',
+    feat_8_title: 'Auto-post no TikTok', feat_8_desc: 'Plano Pro: agende e publique direto. Configure, esqueça, acorde com views.',
+    badge_new: 'NOVO',
+    dash_title: 'Seus', dash_title_accent: 'posts agendados',
+    dash_sub: 'Lembretes que você configurou. Toque para copiar, editar ou remover.',
+    dash_empty: '📅 Sem posts agendados. Gere conteúdo acima e clique em "Agendar".',
+    dash_copy: '📋 Copiar legenda', dash_remove: '🗑️',
+    price_title: 'Preços que', price_title_accent: 'se pagam sozinhos',
+    price_sub: 'Um vídeo viral = milhares em parcerias. Custamos menos que seu café.',
+    price_free_name: 'Grátis', price_free_desc: 'Teste a mágica', price_free_period: '/para sempre',
+    price_pro_name: 'Pro', price_pro_desc: 'Para criadores sérios', price_pro_period: '/mês',
+    price_agency_name: 'Agência', price_agency_desc: 'Para times e marcas', price_agency_period: '/mês',
+    price_popular: 'MAIS POPULAR',
+    price_f_1: '5 gerações / dia', price_f_2: '5 hooks por geração',
+    price_f_3: 'Templates inteligentes', price_f_4: 'Os 6 estilos de hook',
+    price_f_5: 'Lembretes', price_f_6: 'Traga sua própria chave IA',
+    price_f_7: 'Gerações ilimitadas', price_f_8: 'IA real (Llama 3.3 70B ou GPT-4o)',
+    price_f_9: 'Calendário 30 dias', price_f_10: 'Alertas de tendências',
+    price_f_11: 'Voz IA (10 vozes)', price_f_12: 'Suporte prioritário',
+    price_f_13: 'Tudo do Pro', price_f_14: '10 lugares para o time',
+    price_f_15: 'Relatórios white-label', price_f_16: 'Acesso à API',
+    price_f_17: 'Account manager dedicado',
+    price_cta_free: 'Começar grátis', price_cta_pro: 'Quero Pro →', price_cta_agency: 'Contato comercial',
+    price_stripe_soon: 'Checkout Stripe em breve! 🚀',
+    price_contact_soon: 'Contato comercial em breve! 🚀',
+    footer_copy: '© 2026 Hookly · Feito para criadores que não querem perder tempo ·',
+    footer_terms: 'Termos e privacidade', footer_ai: 'Política de IA',
+    set_title: '⚙️ Configurações de IA',
+    set_sub: 'Traga sua própria chave API para destravar a geração premium. Ou fique com o motor gratuito — funciona bem.',
+    set_provider: 'Provedor de IA',
+    set_provider_free: '🆓 Grátis (templates) — funciona offline, sem chave',
+    set_provider_groq: '⚡ Groq (tier grátis disponível, ultra-rápido)',
+    set_provider_openai: '🧠 OpenAI (pago, melhor qualidade)',
+    set_groq_key: 'Chave API Groq', set_groq_free: '(pegue uma grátis em', set_groq_url: 'console.groq.com',
+    set_openai_key: 'Chave API OpenAI', set_openai_at: '(pegue uma em', set_openai_url: 'platform.openai.com',
+    set_groq_model: 'Modelo Groq',
+    set_groq_1: 'Llama 3.3 70B (recomendado, melhor qualidade)',
+    set_groq_2: 'Llama 3.1 8B (mais rápido, tier grátis)',
+    set_groq_3: 'Mixtral 8x7B (equilibrado)',
+    set_openai_model: 'Modelo OpenAI',
+    set_openai_1: 'GPT-4o Mini (barato, rápido, ótima qualidade)',
+    set_openai_2: 'GPT-4o (melhor qualidade, caro)',
+    set_openai_3: 'GPT-3.5 Turbo (o mais barato)',
+    set_badge_label: 'Mostrar qual motor IA gerou isto (transparência)',
+    set_security: '🔒', set_security_bold: 'Suas chaves ficam no seu navegador', set_security_after: '(localStorage). Nunca tocam nossos servidores. Não vemos, não logamos, não compartilhamos.',
+    set_save: 'Salvar configurações', set_test: '🧪 Testar conexão',
+    set_test_ok: '✅ Conexão OK!', set_test_template: 'Motor de templates sempre disponível ✓',
+    set_test_no_key_groq: 'Primeiro coloque uma chave Groq', set_test_no_key_openai: 'Primeiro coloque uma chave OpenAI',
+    set_testing: 'Testando... ⏳', set_saved: 'Configurações salvas ✓',
+    sched_title: '📅 Agendar este post',
+    sched_sub: 'Escolha quando postar. Vamos te lembrar com tudo pré-copiado.',
+    sched_best_times: 'Melhores horários para postar em',
+    sched_field_date: 'Data', sched_field_time: 'Hora',
+    sched_notify: '🔔 Me avise pelo navegador na hora (legenda + hashtags vão pra área de transferência)',
+    sched_gcal: '📅 Adicionar ao Google Calendar',
+    sched_ics: '⬇️ Baixar .ics (Apple Calendar, Outlook, etc.)',
+    sched_local: '💾 Só salvar aqui (vou checar o dashboard)',
+    sched_best_chip: 'TOP',
+    sched_pick_first: 'Escolha data e hora primeiro 📅',
+    sched_past: 'Esse horário já passou ⏰',
+    sched_reminder_set: '🔔 Lembrete configurado! Vamos te avisar.',
+    sched_saved_no_notify: 'Salvo ✓ (ative notificações para lembretes)',
+    sched_saved: 'Salvo no seu calendário ✓',
+    sched_dl: 'Arquivo de calendário baixado ✓',
+    sched_removed: 'Removido',
+    sched_gen_first: 'Gere conteúdo primeiro! ⚡',
+    days_short: ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'],
+    months_short: ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'],
+    translate_title: '🌐 Traduzir site',
+    translate_sub: 'Escolha um idioma para toda a interface',
+    translate_note: 'O idioma do conteúdo (no formulário) é independente. Você pode misturar.',
+    lang_native_names: { EN: 'English', FR: 'Français', ES: 'Español', DE: 'Deutsch', PT: 'Português', IT: 'Italiano' }
+  },
+  IT: {
+    nav_generator: 'Generatore', nav_features: 'Funzioni', nav_pricing: 'Prezzi',
+    nav_schedule: 'Mio calendario', nav_try_free: 'Prova gratis', nav_translate: 'Traduci sito',
+    hero_badge: '12.847 creator in crescita questa settimana',
+    hero_h1_1: 'Smetti di indovinare.', hero_h1_2: 'Inizia a diventare virale.',
+    hero_sub: 'Hook, script e caption con IA per TikTok, Reels e Shorts. <strong>Con Virality Score</strong> e <strong>6 lingue</strong>. Genera 30 giorni di contenuti in 5 minuti.',
+    hero_cta_primary: 'Genera hook gratis →',
+    hero_cta_secondary: 'Vedi prezzi',
+    stat_hooks: 'Hook generati', stat_per_gen: 'Per generazione', stat_boost: 'Aumento medio',
+    gen_title: 'Provalo ora — è gratis',
+    gen_sub: 'Niente iscrizione. Niente carta. Solo risultati.',
+    field_niche: 'La tua nicchia', niche_ph: 'es. fitness, cucina, SaaS, appuntamenti',
+    field_platform: 'Piattaforma',
+    platform_tiktok: 'TikTok', platform_reels: 'Instagram Reels', platform_shorts: 'YouTube Shorts', platform_linkedin: 'LinkedIn',
+    field_topic: 'Argomento del video', topic_ph: 'es. 5 abitudini mattutine delle persone di successo',
+    field_tone: 'Tono',
+    tone_controversial: 'Controverso / Opinione forte',
+    tone_curious: 'Curioso / Domanda',
+    tone_shocking: 'Scioccante / Statistica',
+    tone_relatable: 'Relatable / Storia',
+    tone_educational: 'Educativo / Tutorial',
+    tone_funny: 'Divertente / Meme',
+    field_language: 'Lingua di output', auto_detect: '✨ Rilevata',
+    btn_generate: '⚡ Genera hook virali',
+    out_hooks: '🔥 5 hook virali',
+    out_script: '📝 Script completo (30-60s)',
+    out_caption: '✍️ Caption',
+    out_hashtags: '#️⃣ Hashtags',
+    out_schedule_prompt: '📅 Pronto a postare? Programma un promemoria per non dimenticare.',
+    out_schedule_btn: '📅 Programma',
+    out_copy: 'Copia',
+    out_copied: 'Copiato ✓',
+    out_score_strong: '🔥 Lotto forte! Viralità media:',
+    out_score_avg: 'Punteggio di viralità medio:',
+    out_score_low: 'Media: prova un altro tono.',
+    out_score_hint: 'Clicca un punteggio per i dettagli',
+    engine_groq: '⚡ Generato da Groq (Llama 3.3 70B)',
+    engine_openai: '🧠 Generato da OpenAI (GPT-4o Mini)',
+    engine_template: '🎯 Generato dai template Hookly',
+    engine_fallback: '⚠️ IA fallita, uso template',
+    score_length: 'Lunghezza', score_power: 'Power words', score_pattern: 'Pattern interrupt',
+    score_strong_start: 'Inizio forte', score_pronoun: 'Discorso diretto', score_curiosity: 'Curiosity gap',
+    score_words: 'parole', score_detected: 'rilevate', score_signals: 'segnali rilevati',
+    score_tip_too_long: 'Troppo lungo — prova a tagliare a 5-12 parole',
+    score_tip_too_short: 'Troppo corto — aggiungi contesto',
+    score_tip_sweet_spot: 'Punto perfetto per short-form',
+    score_tip_try: 'Prova:',
+    score_tip_strong: 'Forte',
+    score_tip_good_start: 'Buon inizio',
+    score_tip_pattern: 'Aggiungi una domanda, numero o contraddizione',
+    score_tip_first_word: '✓ prima parola che ferma lo scroll',
+    score_tip_try_start: 'Prova a iniziare con:',
+    score_tip_speaks: 'Parla direttamente al viewer',
+    score_tip_add_you: 'Aggiungi "tu" per connessione',
+    score_tip_opens_loop: 'Apre un loop',
+    score_tip_tease: 'Stuzzica di più — suggerisci la risposta',
+    feat_title: 'Fatto per creator che', feat_title_accent: 'postano ogni giorno',
+    feat_sub: 'Tutto ciò che ti serve per non fissare mai più una pagina vuota.',
+    feat_1_title: 'Generazione in 10 secondi', feat_1_desc: 'Scrivi il tuo argomento. Ricevi 5 hook, uno script completo e hashtag. Vai avanti con la giornata.',
+    feat_2_title: 'Virality Score', feat_2_desc: 'Ogni hook riceve 0-100 con dettaglio: lunghezza, power words, pattern interrupt, curiosity gap. Sai cosa funzionerà PRIMA di postare.',
+    feat_3_title: '6 lingue', feat_3_desc: 'Inglese, francese, spagnolo, tedesco, portoghese, italiano. Power words nativi — non brutte traduzioni.',
+    feat_4_title: 'Addestrato su contenuti virali', feat_4_desc: 'Il nostro modello ha analizzato 100K+ video virali. Sa cosa ferma lo scroll.',
+    feat_5_title: '6 stili di hook', feat_5_desc: 'Controverso, curioso, scioccante, relatable, educativo, divertente. Abbina al tuo brand.',
+    feat_6_title: 'Calendario 30 giorni', feat_6_desc: 'Passa a Pro: un mese intero di hook auto-generati. Non restare mai senza idee.',
+    feat_7_title: 'Voice-over IA', feat_7_desc: 'Piano Pro: trasforma gli script in voice-over da studio nel tono che preferisci.',
+    feat_8_title: 'Auto-post su TikTok', feat_8_desc: 'Piano Pro: programma e pubblica direttamente. Imposta, dimentica, svegliati con views.',
+    badge_new: 'NUOVO',
+    dash_title: 'I tuoi', dash_title_accent: 'post programmati',
+    dash_sub: 'Promemoria che hai impostato. Tocca per copiare, modificare o rimuovere.',
+    dash_empty: '📅 Nessun post programmato. Genera contenuti e clicca "Programma".',
+    dash_copy: '📋 Copia caption', dash_remove: '🗑️',
+    price_title: 'Prezzi che', price_title_accent: 'si ripagano da soli',
+    price_sub: 'Un video virale = migliaia in collaborazioni. Costiamo meno del tuo caffè.',
+    price_free_name: 'Gratis', price_free_desc: 'Prova la magia', price_free_period: '/per sempre',
+    price_pro_name: 'Pro', price_pro_desc: 'Per creator seri', price_pro_period: '/mese',
+    price_agency_name: 'Agenzia', price_agency_desc: 'Per team e brand', price_agency_period: '/mese',
+    price_popular: 'IL PIÙ POPOLARE',
+    price_f_1: '5 generazioni / giorno', price_f_2: '5 hook per generazione',
+    price_f_3: 'Template intelligenti', price_f_4: 'Tutti e 6 gli stili di hook',
+    price_f_5: 'Promemoria', price_f_6: 'Porta la tua chiave IA',
+    price_f_7: 'Generazioni illimitate', price_f_8: 'IA vera (Llama 3.3 70B o GPT-4o)',
+    price_f_9: 'Calendario 30 giorni', price_f_10: 'Alert tendenze',
+    price_f_11: 'Voice-over IA (10 voci)', price_f_12: 'Supporto prioritario',
+    price_f_13: 'Tutto del Pro', price_f_14: '10 posti team',
+    price_f_15: 'Report white-label', price_f_16: 'Accesso API',
+    price_f_17: 'Account manager dedicato',
+    price_cta_free: 'Inizia gratis', price_cta_pro: 'Prendi Pro →', price_cta_agency: 'Contatta vendite',
+    price_stripe_soon: 'Checkout Stripe in arrivo! 🚀',
+    price_contact_soon: 'Contatto vendite in arrivo! 🚀',
+    footer_copy: '© 2026 Hookly · Per creator che non vogliono perdere tempo ·',
+    footer_terms: 'Termini e privacy', footer_ai: 'Policy IA',
+    set_title: '⚙️ Impostazioni IA',
+    set_sub: 'Porta la tua chiave API per sbloccare la generazione premium. O resta con il motore gratuito — funziona bene.',
+    set_provider: 'Provider IA',
+    set_provider_free: '🆓 Gratis (template) — funziona offline, senza chiave',
+    set_provider_groq: '⚡ Groq (tier gratis disponibile, ultra-veloce)',
+    set_provider_openai: '🧠 OpenAI (a pagamento, massima qualità)',
+    set_groq_key: 'Chiave API Groq', set_groq_free: '(prendine una gratis su', set_groq_url: 'console.groq.com',
+    set_openai_key: 'Chiave API OpenAI', set_openai_at: '(prendine una su', set_openai_url: 'platform.openai.com',
+    set_groq_model: 'Modello Groq',
+    set_groq_1: 'Llama 3.3 70B (consigliato, massima qualità)',
+    set_groq_2: 'Llama 3.1 8B (più veloce, tier gratis)',
+    set_groq_3: 'Mixtral 8x7B (equilibrato)',
+    set_openai_model: 'Modello OpenAI',
+    set_openai_1: 'GPT-4o Mini (economico, veloce, ottima qualità)',
+    set_openai_2: 'GPT-4o (massima qualità, caro)',
+    set_openai_3: 'GPT-3.5 Turbo (il più economico)',
+    set_badge_label: 'Mostra quale motore IA ha generato (trasparenza)',
+    set_security: '🔒', set_security_bold: 'Le tue chiavi restano nel tuo browser', set_security_after: '(localStorage). Non toccano mai i nostri server. Non le vediamo, non le logghiamo, non le condividiamo.',
+    set_save: 'Salva impostazioni', set_test: '🧪 Testa connessione',
+    set_test_ok: '✅ Connessione OK!', set_test_template: 'Il motore template è sempre disponibile ✓',
+    set_test_no_key_groq: 'Prima inserisci una chiave Groq', set_test_no_key_openai: 'Prima inserisci una chiave OpenAI',
+    set_testing: 'Testing... ⏳', set_saved: 'Impostazioni salvate ✓',
+    sched_title: '📅 Programma questo post',
+    sched_sub: 'Scegli quando postare. Ti ricorderemo con tutto già copiato.',
+    sched_best_times: 'Momenti migliori per postare su',
+    sched_field_date: 'Data', sched_field_time: 'Ora',
+    sched_notify: '🔔 Mandami una notifica browser quando è ora (caption + hashtag saranno copiati)',
+    sched_gcal: '📅 Aggiungi a Google Calendar',
+    sched_ics: '⬇️ Scarica .ics (Apple Calendar, Outlook, ecc.)',
+    sched_local: '💾 Salva solo qui (controllerò la dashboard)',
+    sched_best_chip: 'TOP',
+    sched_pick_first: 'Scegli prima data e ora 📅',
+    sched_past: 'Quell\'ora è già passata ⏰',
+    sched_reminder_set: '🔔 Promemoria impostato! Ti avviseremo.',
+    sched_saved_no_notify: 'Salvato ✓ (attiva le notifiche per i promemoria)',
+    sched_saved: 'Salvato nel tuo calendario ✓',
+    sched_dl: 'File calendario scaricato ✓',
+    sched_removed: 'Rimosso',
+    sched_gen_first: 'Prima genera contenuti! ⚡',
+    days_short: ['dom', 'lun', 'mar', 'mer', 'gio', 'ven', 'sab'],
+    months_short: ['gen', 'feb', 'mar', 'apr', 'mag', 'giu', 'lug', 'ago', 'set', 'ott', 'nov', 'dic'],
+    translate_title: '🌐 Traduci sito',
+    translate_sub: 'Scegli una lingua per tutta l\'interfaccia',
+    translate_note: 'La lingua del contenuto (nel modulo) è indipendente. Puoi mischiare.',
+    lang_native_names: { EN: 'English', FR: 'Français', ES: 'Español', DE: 'Deutsch', PT: 'Português', IT: 'Italiano' }
+  }
+};
+
+let currentUILang = 'EN';
+
+function t(key) {
+  return (UI_STRINGS[currentUILang] && UI_STRINGS[currentUILang][key]) ||
+         (UI_STRINGS.EN && UI_STRINGS.EN[key]) ||
+         key;
+}
+
+function applyUITranslations() {
+  document.documentElement.lang = (LANG_CONFIG[currentUILang] || LANG_CONFIG.EN).code;
+  // Replace text in elements with data-i18n
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const val = t(key);
+    if (val) {
+      // Use innerHTML for keys that may contain <strong> tags
+      if (val.includes('<')) el.innerHTML = val;
+      else el.textContent = val;
+    }
+  });
+  // Replace placeholders
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    const key = el.getAttribute('data-i18n-ph');
+    const val = t(key);
+    if (val) el.placeholder = val;
+  });
+  // Replace select options
+  document.querySelectorAll('[data-i18n-options]').forEach(select => {
+    const keys = select.getAttribute('data-i18n-options').split(',');
+    Array.from(select.options).forEach((opt, i) => {
+      if (keys[i]) opt.textContent = t(keys[i].trim());
+    });
+  });
+}
+
+function setUILanguage(lang, persist = true) {
+  if (!UI_STRINGS[lang]) lang = 'EN';
+  currentUILang = lang;
+  applyUITranslations();
+  // Update nav button flag
+  const flagEl = document.getElementById('translateBtnFlag');
+  if (flagEl) flagEl.textContent = (LANG_CONFIG[lang] || LANG_CONFIG.EN).flag;
+  if (persist) {
+    try { localStorage.setItem('hookly_ui_lang', lang); } catch {}
+  }
+}
+const LANG_CONFIG = {
+  EN: {
+    name: 'English', flag: '🇬🇧', code: 'en',
+    powerWords: ['secret', 'nobody', 'no one', 'never', 'always', 'stop', 'wait', 'imagine',
+                 'suddenly', 'discover', 'reveal', 'shocking', 'truth', 'lie', 'mistake',
+                 'warning', 'danger', 'instantly', 'immediately', 'crazy', 'insane', 'wild',
+                 'unpopular', 'controversial', 'banned', 'forbidden', 'hack', 'trick', 'free',
+                 'proven', 'guaranteed', 'finally', 'just', 'actually', 'literally', 'the real'],
+    questionStarters: ['why', 'what', 'how', 'when', 'who', 'where', 'is it', 'are you', 'do you', 'have you'],
+    strongStarts: ['stop', 'wait', 'listen', 'look', 'imagine', 'picture', 'nobody', 'everyone', 'most people'],
+    personalPronouns: ['you', 'your', 'you\'re', 'you\'ll', 'i', 'me', 'my', 'we', 'us', 'our'],
+    viralPatterns: [/^\d+\s/i, /^(stop|wait|listen|look|nobody|everyone|here\'s|here is|imagine)/i, /\?$/, /!$/, /pov:/i, /storytime:/i]
+  },
+  FR: {
+    name: 'Français', flag: '🇫🇷', code: 'fr',
+    powerWords: ['secret', 'personne', 'jamais', 'toujours', 'arrête', 'attends', 'imagine',
+                 'soudain', 'découvre', 'révèle', 'choquant', 'vérité', 'mensonge', 'erreur',
+                 'attention', 'danger', 'instantanément', 'immédiatement', 'fou', 'dingue', 'sauvage',
+                 'impopulaire', 'controversé', 'interdit', 'astuce', 'truc', 'gratuit', 'offert',
+                 'prouvé', 'garanti', 'enfin', 'vraiment', 'littéralement', 'le vrai', 'la vraie'],
+    questionStarters: ['pourquoi', 'quoi', 'comment', 'quand', 'qui', 'où', 'est-ce que', 'tu', 'avez-vous', 'as-tu'],
+    strongStarts: ['arrête', 'attends', 'écoute', 'regarde', 'imagine', 'personne', 'tout le monde', 'la plupart'],
+    personalPronouns: ['tu', 'te', 'ton', 'ta', 'tes', 'toi', 'je', 'me', 'mon', 'ma', 'mes', 'nous', 'notre', 'nos', 'vous', 'votre', 'vos'],
+    viralPatterns: [/^\d+\s/i, /^(arrête|attends|écoute|regarde|personne|tout le monde|voici|imagine)/i, /\?$/, /!$/, /pov\s*:/i, /storytime\s*:/i, /il était une fois/i]
+  },
+  ES: {
+    name: 'Español', flag: '🇪🇸', code: 'es',
+    powerWords: ['secreto', 'nadie', 'nunca', 'siempre', 'para', 'espera', 'imagina',
+                 'de repente', 'descubre', 'revela', 'impactante', 'verdad', 'mentira', 'error',
+                 'cuidado', 'peligro', 'instantáneamente', 'inmediatamente', 'loco', 'una locura', 'salvaje',
+                 'impopular', 'polémico', 'prohibido', 'truco', 'consejo', 'gratis', 'gratuito',
+                 'probado', 'garantizado', 'por fin', 'de verdad', 'literalmente', 'lo real'],
+    questionStarters: ['por qué', 'qué', 'cómo', 'cuándo', 'quién', 'dónde', 'es que', 'tú', 'usted', 'has'],
+    strongStarts: ['para', 'espera', 'escucha', 'mira', 'imagina', 'nadie', 'todos', 'la mayoría'],
+    personalPronouns: ['tú', 'te', 'tu', 'tus', 'contigo', 'yo', 'me', 'mi', 'mis', 'conmigo', 'nosotros', 'nuestro', 'ustedes', 'su', 'sus'],
+    viralPatterns: [/^\d+\s/i, /^(para|espera|escucha|mira|nadie|todos|aquí|imagina)/i, /\?$/, /!$/, /pov\s*:/i, /historia\s*:/i, /érase una vez/i]
+  },
+  DE: {
+    name: 'Deutsch', flag: '🇩🇪', code: 'de',
+    powerWords: ['geheimnis', 'niemand', 'nie', 'immer', 'stopp', 'warte', 'stell dir vor',
+                 'plötzlich', 'entdecke', 'enthülle', 'schockierend', 'wahrheit', 'lüge', 'fehler',
+                 'warnung', 'gefahr', 'sofort', 'unmittelbar', 'verrückt', 'wahnsinn', 'wild',
+                 'unpopulär', 'kontrovers', 'verboten', 'tipp', 'trick', 'kostenlos', 'gratis',
+                 'bewiesen', 'garantiert', 'endlich', 'wirklich', 'buchstäblich', 'das echte'],
+    questionStarters: ['warum', 'was', 'wie', 'wann', 'wer', 'wo', 'hast du', 'haben sie', 'bist du'],
+    strongStarts: ['stopp', 'warte', 'hör zu', 'schau', 'stell dir vor', 'niemand', 'alle', 'die meisten'],
+    personalPronouns: ['du', 'dein', 'deine', 'dich', 'dir', 'ich', 'mich', 'mir', 'mein', 'meine', 'wir', 'uns', 'unser', 'ihr', 'euer'],
+    viralPatterns: [/^\d+\s/i, /^(stopp|warte|hör zu|schau|niemand|alle|stell dir vor)/i, /\?$/, /!$/, /pov\s*:/i]
+  },
+  PT: {
+    name: 'Português', flag: '🇵🇹', code: 'pt',
+    powerWords: ['segredo', 'ninguém', 'nunca', 'sempre', 'para', 'espera', 'imagina',
+                 'de repente', 'descobre', 'revela', 'chocante', 'verdade', 'mentira', 'erro',
+                 'atenção', 'perigo', 'instantaneamente', 'imediatamente', 'louco', 'uma loucura', 'selvagem',
+                 'impopular', 'polêmico', 'proibido', 'dica', 'truque', 'grátis', 'gratuito',
+                 'comprovado', 'garantido', 'finalmente', 'realmente', 'literalmente', 'o real'],
+    questionStarters: ['por que', 'o que', 'como', 'quando', 'quem', 'onde', 'você', 'tu', 'é que'],
+    strongStarts: ['para', 'espera', 'escuta', 'olha', 'imagina', 'ninguém', 'todo mundo', 'a maioria'],
+    personalPronouns: ['você', 'te', 'tu', 'teu', 'tua', 'contigo', 'eu', 'me', 'meu', 'minha', 'nós', 'nos', 'nosso', 'vocês'],
+    viralPatterns: [/^\d+\s/i, /^(para|espera|escuta|olha|ninguém|todo mundo|imagina)/i, /\?$/, /!$/, /pov\s*:/i]
+  },
+  IT: {
+    name: 'Italiano', flag: '🇮🇹', code: 'it',
+    powerWords: ['segreto', 'nessuno', 'mai', 'sempre', 'ferma', 'aspetta', 'immagina',
+                 'improvvisamente', 'scopri', 'rivela', 'scioccante', 'verità', 'bugia', 'errore',
+                 'attenzione', 'pericolo', 'immediatamente', 'pazzo', 'una follia', 'selvaggio',
+                 'impopolare', 'controverso', 'vietato', 'trucco', 'consiglio', 'gratis', 'gratuito',
+                 'provato', 'garantito', 'finalmente', 'davvero', 'letteralmente', 'il vero'],
+    questionStarters: ['perché', 'cosa', 'come', 'quando', 'chi', 'dove', 'tu', 'hai', 'sei'],
+    strongStarts: ['ferma', 'aspetta', 'ascolta', 'guarda', 'immagina', 'nessuno', 'tutti', 'la maggior parte'],
+    personalPronouns: ['tu', 'ti', 'tuo', 'tua', 'tuoi', 'te', 'io', 'mi', 'mio', 'mia', 'noi', 'ci', 'nostro', 'voi', 'vostro'],
+    viralPatterns: [/^\d+\s/i, /^(ferma|aspetta|ascolta|guarda|nessuno|tutti|immagina)/i, /\?$/, /!$/, /pov\s*:/i]
+  }
+};
+
+// ============================================================
+// VIRALITY SCORE — pattern-based scoring engine
+// Multi-language aware. Pure JS, no API calls.
+// ============================================================
+const SCORE_WEIGHTS = {
+  length: 20,       // 5-12 words is sweet spot for short-form
+  powerWords: 20,   // High-impact words that grab attention
+  patternInterrupt: 20, // Questions, numbers, contradictions, exclamations
+  strongStart: 15,   // First word should hook (stop, wait, nobody, imagine, why...)
+  personalPronoun: 10, // "You", "tu", "tú", "du" — direct address
+  curiosityGap: 15   // Incomplete information, open loops
+};
+
+function scoreHook(hook, langCode = 'EN') {
+  if (!hook) return { total: 0, breakdown: [], hint: '' };
+  const config = LANG_CONFIG[langCode] || LANG_CONFIG.EN;
+  const text = hook.trim();
+  const lower = text.toLowerCase();
+  const words = lower.split(/\s+/).filter(Boolean);
+  const wordCount = words.length;
+  const breakdown = [];
+
+  // 1. LENGTH SCORE
+  let lengthScore = 0;
+  if (wordCount >= 5 && wordCount <= 12) lengthScore = 100;
+  else if (wordCount >= 4 && wordCount <= 14) lengthScore = 75;
+  else if (wordCount >= 3 && wordCount <= 17) lengthScore = 50;
+  else lengthScore = 25;
+  const lengthLabel = `${t('score_length')} (${wordCount} ${t('score_words')}${wordCount > 12 ? ' ⚠️' : ''})`;
+  breakdown.push({
+    label: lengthLabel,
+    pts: Math.round(lengthScore * SCORE_WEIGHTS.length / 100),
+    max: SCORE_WEIGHTS.length,
+    tip: wordCount > 12 ? t('score_tip_too_long') : (wordCount < 5 ? t('score_tip_too_short') : t('score_tip_sweet_spot'))
+  });
+
+  // 2. POWER WORDS
+  const hits = config.powerWords.filter(pw => lower.includes(pw));
+  const powerScore = Math.min(hits.length * 35, 100);
+  breakdown.push({
+    label: `${t('score_power')} (${hits.length})`,
+    pts: Math.round(powerScore * SCORE_WEIGHTS.powerWords / 100),
+    max: SCORE_WEIGHTS.powerWords,
+    tip: hits.length === 0 ? `${t('score_tip_try')} ${config.powerWords.slice(0, 3).join(', ')}` : (hits.length > 1 ? t('score_tip_strong') : t('score_tip_good_start'))
+  });
+
+  // 3. PATTERN INTERRUPT
+  let patternScore = 0;
+  const hasQuestion = /\?/.test(text);
+  const hasExclamation = /!/.test(text);
+  const hasNumber = /\b\d+\b/.test(text);
+  const hasContradiction = /(but|yet|actually|never|always|nobody|everyone|but|however|ma\s|pero|aber|mas|ma|pero)\b/i.test(lower);
+  const patternCount = [hasQuestion, hasExclamation, hasNumber, hasContradiction].filter(Boolean).length;
+  patternScore = patternCount * 25;
+  breakdown.push({
+    label: t('score_pattern'),
+    pts: Math.round(patternScore * SCORE_WEIGHTS.patternInterrupt / 100),
+    max: SCORE_WEIGHTS.patternInterrupt,
+    tip: patternCount === 0 ? t('score_tip_pattern') : `${patternCount} ${t('score_signals')}`
+  });
+
+  // 4. STRONG START
+  const firstWord = words[0] || '';
+  const startsStrong = config.strongStarts.some(sw => firstWord === sw || firstWord.startsWith(sw + ' ') || lower.startsWith(sw + ' '));
+  const startsWithNumber = /^\d+/.test(firstWord);
+  const startsWithPov = /^(pov|storytime|pov:|storytime:)/i.test(firstWord);
+  let strongStartScore = 0;
+  if (startsStrong || startsWithNumber || startsWithPov) strongStartScore = 100;
+  else if (wordCount > 0) strongStartScore = 40;
+  breakdown.push({
+    label: t('score_strong_start'),
+    pts: Math.round(strongStartScore * SCORE_WEIGHTS.strongStart / 100),
+    max: SCORE_WEIGHTS.strongStart,
+    tip: startsStrong || startsWithNumber || startsWithPov ? t('score_tip_first_word') : `${t('score_tip_try_start')} ${config.strongStarts.slice(0, 3).join(', ')}`
+  });
+
+  // 5. PERSONAL PRONOUN
+  const hasPronoun = config.personalPronouns.some(p => lower.includes(' ' + p + ' ') || lower.startsWith(p + ' ') || lower.endsWith(' ' + p) || lower === p);
+  const pronounScore = hasPronoun ? 100 : 30;
+  breakdown.push({
+    label: t('score_pronoun'),
+    pts: Math.round(pronounScore * SCORE_WEIGHTS.personalPronoun / 100),
+    max: SCORE_WEIGHTS.personalPronoun,
+    tip: hasPronoun ? t('score_tip_speaks') : t('score_tip_add_you')
+  });
+
+  // 6. CURIOSITY GAP
+  const curiosityPatterns = [
+    /^(this|that|these|those|it|he|she|they)/i,
+    /(the real|le vrai|lo real|das echte|o real|il vero|why|porque|warum|perché|porque|why no one|why nobody)/i,
+    /\.\.\.$/,
+    /(here's why|that's why|voici pourquoi|he aquí|deshalb|ecco perché|é por isso)/i,
+    /(the one|the secret|le secret|el secreto|das geheimnis|o segredo|il segreto)/i
+  ];
+  const hasCuriosity = curiosityPatterns.some(p => p.test(lower));
+  const curiosityScore = hasCuriosity ? 100 : 40;
+  breakdown.push({
+    label: t('score_curiosity'),
+    pts: Math.round(curiosityScore * SCORE_WEIGHTS.curiosityGap / 100),
+    max: SCORE_WEIGHTS.curiosityGap,
+    tip: hasCuriosity ? t('score_tip_opens_loop') : t('score_tip_tease')
+  });
+
+  // TOTAL
+  const total = breakdown.reduce((sum, row) => sum + row.pts, 0);
+
+  // HINT (top improvement)
+  const sorted = [...breakdown].sort((a, b) => (b.pts / b.max) - (a.pts / a.max));
+  const weakest = sorted[sorted.length - 1];
+  let hint = '';
+  if (total < 60) hint = `💡 Fix #1: ${weakest.tip}`;
+
+  return { total, breakdown, hint, wordCount };
+}
+
+function getSettings() {
+  try {
+    return {
+      provider: localStorage.getItem('hookly_provider') || 'template',
+      groqKey: localStorage.getItem('hookly_groq_key') || '',
+      openaiKey: localStorage.getItem('hookly_openai_key') || '',
+      groqModel: localStorage.getItem('hookly_groq_model') || 'llama-3.3-70b-versatile',
+      openaiModel: localStorage.getItem('hookly_openai_model') || 'gpt-4o-mini',
+      showBadge: localStorage.getItem('hookly_show_badge') !== 'false'
+    };
+  } catch {
+    return { provider: 'template', groqKey: '', openaiKey: '', groqModel: 'llama-3.3-70b-versatile', openaiModel: 'gpt-4o-mini', showBadge: true };
+  }
+}
+
+function saveSettings(s) {
+  try {
+    localStorage.setItem('hookly_provider', s.provider);
+    localStorage.setItem('hookly_groq_key', s.groqKey);
+    localStorage.setItem('hookly_openai_key', s.openaiKey);
+    localStorage.setItem('hookly_groq_model', s.groqModel);
+    localStorage.setItem('hookly_openai_model', s.openaiModel);
+    localStorage.setItem('hookly_show_badge', s.showBadge);
+  } catch (e) {
+    console.warn('localStorage unavailable', e);
+  }
+}
+
+async function callGroq(apiKey, model, prompt) {
+  const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${apiKey}`
+    },
+    body: JSON.stringify({
+      model,
+      messages: [
+        { role: 'system', content: LLM_PROMPTS.system },
+        { role: 'user', content: prompt }
+      ],
+      temperature: 0.9,
+      max_tokens: 1500,
+      response_format: { type: 'json_object' }
+    })
+  });
+  if (!res.ok) {
+    const err = await res.text();
+    throw new Error(`Groq API error ${res.status}: ${err}`);
+  }
+  const data = await res.json();
+  return JSON.parse(data.choices[0].message.content);
+}
+
+async function callOpenAI(apiKey, model, prompt) {
+  const res = await fetch('https://api.openai.com/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${apiKey}`
+    },
+    body: JSON.stringify({
+      model,
+      messages: [
+        { role: 'system', content: LLM_PROMPTS.system },
+        { role: 'user', content: prompt }
+      ],
+      temperature: 0.9,
+      max_tokens: 1500,
+      response_format: { type: 'json_object' }
+    })
+  });
+  if (!res.ok) {
+    const err = await res.text();
+    throw new Error(`OpenAI API error ${res.status}: ${err}`);
+  }
+  const data = await res.json();
+  return JSON.parse(data.choices[0].message.content);
+}
+
+async function generateWithLLM(niche, platform, topic, tone, language = 'EN') {
+  const s = getSettings();
+  const langName = (LANG_CONFIG[language] || LANG_CONFIG.EN).name;
+  const userPrompt = `Generate viral content for the EXACT topic below. Stay strictly on this topic — do not invent or substitute a different subject.
+
+TOPIC (use this exact subject in every hook and throughout the script): "${topic}"
+NICHE: ${niche}
+PLATFORM: ${platform}
+HOOK TONE: ${tone}
+OUTPUT LANGUAGE: ${langName} (${language}) — pure native ${langName}, no mixing
+
+Return ONLY the JSON object, no markdown formatting, no extra text.`;
+
+  // Inject language into the system prompt
+  const systemPrompt = LLM_PROMPTS.system.replace(/{language}/g, langName);
+
+  // Use custom call with language-aware system prompt
+  if (s.provider === 'groq' && s.groqKey) {
+    const result = await callGroqWithSystem(s.groqKey, s.groqModel, userPrompt, systemPrompt);
+    return { ...result, _engine: 'groq' };
+  }
+  if (s.provider === 'openai' && s.openaiKey) {
+    const result = await callOpenAIWithSystem(s.openaiKey, s.openaiModel, userPrompt, systemPrompt);
+    return { ...result, _engine: 'openai' };
+  }
+  // Fallback
+  return { ...generateContent(niche, platform, topic, tone, language), _engine: 'template' };
+}
+
+async function callGroqWithSystem(apiKey, model, prompt, systemPrompt) {
+  const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${apiKey}` },
+    body: JSON.stringify({
+      model,
+      messages: [
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: prompt }
+      ],
+      temperature: 0.9,
+      max_tokens: 1500,
+      response_format: { type: 'json_object' }
+    })
+  });
+  if (!res.ok) throw new Error(`Groq API error ${res.status}: ${await res.text()}`);
+  const data = await res.json();
+  return JSON.parse(data.choices[0].message.content);
+}
+
+async function callOpenAIWithSystem(apiKey, model, prompt, systemPrompt) {
+  const res = await fetch('https://api.openai.com/v1/chat/completions', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${apiKey}` },
+    body: JSON.stringify({
+      model,
+      messages: [
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: prompt }
+      ],
+      temperature: 0.9,
+      max_tokens: 1500,
+      response_format: { type: 'json_object' }
+    })
+  });
+  if (!res.ok) throw new Error(`OpenAI API error ${res.status}: ${await res.text()}`);
+  const data = await res.json();
+  return JSON.parse(data.choices[0].message.content);
+}
+
+const HOOK_TEMPLATES = {
+  EN: {
+    "Controversial / Hot take": [
+      "Unpopular opinion: {topic} is the biggest lie in {niche}.",
+      "Stop doing {topic}. Here's what actually works.",
+      "Everyone is wrong about {topic}. Let me explain.",
+      "Hot take: If you still {topic}, you're leaving money on the table.",
+      "I'd rather be honest than popular — {topic} is a scam.",
+      "The {niche} industry doesn't want you to know this about {topic}.",
+      "I'm about to get cancelled for saying this, but {topic} is overrated.",
+      "Nobody talks about this, but {topic} is destroying your progress."
+    ],
+    "Curious / Question": [
+      "What if I told you {topic} could change everything?",
+      "Why do 99% of people fail at {topic}? Let me show you.",
+      "I tried {topic} for 30 days. Here's what happened.",
+      "The one question about {topic} nobody asks: {question}",
+      "How do top 1% in {niche} actually approach {topic}?",
+      "Why is everyone suddenly obsessed with {topic}?",
+      "What nobody tells you about {topic} until it's too late."
+    ],
+    "Shocking / Stat": [
+      "93% of people get {topic} completely wrong. Are you one of them?",
+      "I just discovered {topic} and it's breaking the internet.",
+      "This {niche} secret was worth $1M to me — and I'm giving it away.",
+      "Doctors hate this one weird trick about {topic}.",
+      "I went from 0 to 100K using {topic}. Here's the exact playbook.",
+      "The data is in: {topic} works 3x better than anything else."
+    ],
+    "Relatable / Story": [
+      "POV: you just realized {topic} was the answer all along.",
+      "Me, three years ago, thinking {topic} didn't apply to me.",
+      "Storytime: how {topic} completely changed my life in 90 days.",
+      "I was broke until I discovered {topic}.",
+      "The exact moment I knew {topic} was for me.",
+      "Day 1 vs Day 90 of {topic} — the difference is wild."
+    ],
+    "Educational / How-to": [
+      "Here's exactly how to {topic} (step-by-step).",
+      "The 3-step framework to master {topic}.",
+      "Save this — the ultimate guide to {topic}.",
+      "5 mistakes you're making with {topic} (and how to fix them).",
+      "Copy this exact {topic} system that worked for me.",
+      "If you're a beginner at {topic}, watch this NOW."
+    ],
+    "Funny / Meme": [
+      "Me pretending {topic} isn't my entire personality.",
+      "POV: someone asks you about {topic} for the 100th time.",
+      "Tell me you love {topic} without telling me you love {topic}.",
+      "Types of people in {niche}: the {topic} edition.",
+      "When {topic} hits different at 2am.",
+      "I really thought {topic} would be easy. I was wrong."
+    ]
+  },
+  FR: {
+    "Controversial / Hot take": [
+      "Avis impopulaire : {topic} est le plus gros mensonge du {niche}.",
+      "Arrête de faire {topic}. Voici ce qui marche vraiment.",
+      "Tout le monde se trompe sur {topic}. Laisse-moi t'expliquer.",
+      "Hot take : si tu fais encore {topic}, tu perds de l'argent.",
+      "Je préfère être honnête que populaire — {topic} est une arnaque.",
+      "L'industrie du {niche} ne veut pas que tu saches ça sur {topic}.",
+      "Je vais me faire cancel pour avoir dit ça, mais {topic} est surfait.",
+      "Personne n'en parle, mais {topic} détruit ta progression."
+    ],
+    "Curious / Question": [
+      "Et si je te disais que {topic} peut tout changer ?",
+      "Pourquoi 99% des gens ratent {topic} ? Je te montre.",
+      "J'ai testé {topic} pendant 30 jours. Voilà ce qui s'est passé.",
+      "La seule question sur {topic} que personne ne pose : {question}",
+      "Comment le top 1% en {niche} aborde {topic} ?",
+      "Pourquoi tout le monde est obsédé par {topic} d'un coup ?",
+      "Ce qu'on ne te dit pas sur {topic} avant qu'il soit trop tard."
+    ],
+    "Shocking / Stat": [
+      "93% des gens se trompent complètement sur {topic}. Et toi ?",
+      "Je viens de découvrir {topic} et ça explose sur internet.",
+      "Ce secret sur le {niche} m'a rapporté 1M€ — et je le donne.",
+      "Les pros détestent cette astuce bizarre à propos de {topic}.",
+      "Je suis passé de 0 à 100K avec {topic}. Voici la méthode exacte.",
+      "Les chiffres sont là : {topic} marche 3x mieux que tout le reste."
+    ],
+    "Relatable / Story": [
+      "POV : tu réalises que {topic} était la réponse depuis le début.",
+      "Moi, il y a 3 ans, à penser que {topic} ne me concernait pas.",
+      "Storytime : comment {topic} a changé ma vie en 90 jours.",
+      "J'étais fauché jusqu'à ce que je découvre {topic}.",
+      "Le moment exact où j'ai su que {topic} était fait pour moi.",
+      "Jour 1 vs Jour 90 de {topic} — la différence est folle."
+    ],
+    "Educational / How-to": [
+      "Voici exactement comment {topic} (étape par étape).",
+      "Le framework en 3 étapes pour maîtriser {topic}.",
+      "Sauvegarde ça — le guide ultime pour {topic}.",
+      "5 erreurs que tu fais avec {topic} (et comment les corriger).",
+      "Copie ce système {topic} exact qui a marché pour moi.",
+      "Si tu es débutant en {topic}, regarde ça MAINTENANT."
+    ],
+    "Funny / Meme": [
+      "Moi qui fait semblant que {topic} n'est pas toute ma personnalité.",
+      "POV : on te parle de {topic} pour la 100ème fois.",
+      "Dis-moi que tu aimes {topic} sans me dire que tu aimes {topic}.",
+      "Les types de personnes en {niche} : édition {topic}.",
+      "Quand {topic} te touche différemment à 2h du mat'.",
+      "Je pensais vraiment que {topic} serait facile. J'avais tort."
+    ]
+  },
+  ES: {
+    "Controversial / Hot take": [
+      "Opinión impopular: {topic} es la mayor mentira del {niche}.",
+      "Para de hacer {topic}. Esto es lo que realmente funciona.",
+      "Todos están equivocados sobre {topic}. Te explico.",
+      "Hot take: si todavía haces {topic}, estás perdiendo dinero.",
+      "Prefiero ser honesto que popular — {topic} es una estafa.",
+      "La industria del {niche} no quiere que sepas esto sobre {topic}.",
+      "Van a cancelarme por decir esto, pero {topic} es overrated.",
+      "Nadie habla de esto, pero {topic} está destruyendo tu progreso."
+    ],
+    "Curious / Question": [
+      "¿Y si te dijera que {topic} puede cambiarlo todo?",
+      "¿Por qué el 99% falla en {topic}? Te lo muestro.",
+      "Probé {topic} durante 30 días. Esto fue lo que pasó.",
+      "La única pregunta sobre {topic} que nadie hace: {question}",
+      "¿Cómo aborda el top 1% en {niche} el tema de {topic}?",
+      "¿Por qué todo el mundo está obsesionado con {topic} de repente?",
+      "Lo que nadie te cuenta sobre {topic} hasta que es tarde."
+    ],
+    "Shocking / Stat": [
+      "El 93% se equivoca por completo con {topic}. ¿Y tú?",
+      "Acabo de descubrir {topic} y está rompiendo internet.",
+      "Este secreto del {niche} me valió 1M€ — y lo estoy regalando.",
+      "Los profesionales odian este truco raro sobre {topic}.",
+      "Pasé de 0 a 100K con {topic}. Aquí está el método exacto.",
+      "Los datos lo confirman: {topic} funciona 3x mejor que todo lo demás."
+    ],
+    "Relatable / Story": [
+      "POV: acabas de darte cuenta de que {topic} era la respuesta.",
+      "Yo, hace tres años, pensando que {topic} no era para mí.",
+      "Storytime: cómo {topic} me cambió la vida en 90 días.",
+      "Estaba en bancarrota hasta que descubrí {topic}.",
+      "El momento exacto en que supe que {topic} era para mí.",
+      "Día 1 vs Día 90 de {topic} — la diferencia es brutal."
+    ],
+    "Educational / How-to": [
+      "Así es exactamente cómo {topic} (paso a paso).",
+      "El framework de 3 pasos para dominar {topic}.",
+      "Guarda esto — la guía definitiva de {topic}.",
+      "5 errores que cometes con {topic} (y cómo arreglarlos).",
+      "Copia este sistema exacto de {topic} que me funcionó.",
+      "Si eres principiante en {topic}, mira esto YA."
+    ],
+    "Funny / Meme": [
+      "Yo fingiendo que {topic} no es toda mi personalidad.",
+      "POV: alguien te pregunta sobre {topic} por centésima vez.",
+      "Dime que amas {topic} sin decirme que amas {topic}.",
+      "Tipos de personas en {niche}: edición {topic}.",
+      "Cuando {topic} pega diferente a las 2am.",
+      "Realmente pensé que {topic} sería fácil. Me equivoqué."
+    ]
+  },
+  DE: {
+    "Controversial / Hot take": [
+      "Unpopuläre Meinung: {topic} ist die größte Lüge im {niche}.",
+      "Hör auf mit {topic}. Das funktioniert wirklich.",
+      "Alle liegen falsch bei {topic}. Ich erkläre es dir.",
+      "Heiße These: Wenn du immer noch {topic} machst, lässt du Geld liegen.",
+      "Lieber ehrlich als beliebt — {topic} ist ein Betrug.",
+      "Die {niche}-Industrie will nicht, dass du das über {topic} weißt.",
+      "Ich werde dafür gecancelt, aber {topic} ist überbewertet.",
+      "Niemand redet darüber, aber {topic} zerstört deinen Fortschritt."
+    ],
+    "Curious / Question": [
+      "Was wäre, wenn ich dir sage, {topic} kann alles verändern?",
+      "Warum scheitern 99% bei {topic}? Ich zeige es dir.",
+      "Ich habe {topic} 30 Tage lang getestet. Das ist passiert.",
+      "Die eine Frage zu {topic}, die niemand stellt: {question}",
+      "Wie geht das Top 1% im {niche} eigentlich mit {topic} um?",
+      "Warum sind plötzlich alle von {topic} besessen?",
+      "Was dir keiner über {topic} erzählt, bis es zu spät ist."
+    ],
+    "Shocking / Stat": [
+      "93% liegen bei {topic} komplett falsch. Bist du eine/r davon?",
+      "Ich habe gerade {topic} entdeckt und es bricht das Internet.",
+      "Dieses {niche}-Geheimnis war 1M€ wert — und ich verschenke es.",
+      "Profis hassen diesen seltsamen Trick über {topic}.",
+      "Ich ging von 0 auf 100K mit {topic}. Hier ist der genaue Plan.",
+      "Die Daten sind eindeutig: {topic} wirkt 3x besser als alles andere."
+    ],
+    "Relatable / Story": [
+      "POV: Du merkst gerade, dass {topic} die ganze Antwort war.",
+      "Ich, vor drei Jahren, dachte {topic} betrifft mich nicht.",
+      "Storytime: Wie {topic} mein Leben in 90 Tagen verändert hat.",
+      "Ich war pleite, bis ich {topic} entdeckte.",
+      "Der genaue Moment, als ich wusste, {topic} ist meins.",
+      "Tag 1 vs Tag 90 von {topic} — der Unterschied ist wild."
+    ],
+    "Educational / How-to": [
+      "Genau so machst du {topic} (Schritt für Schritt).",
+      "Das 3-Schritte-Framework, um {topic} zu meistern.",
+      "Speichere das — der ultimative Guide zu {topic}.",
+      "5 Fehler, die du bei {topic} machst (und wie du sie behebst).",
+      "Kopiere dieses {topic}-System, das bei mir funktioniert hat.",
+      "Wenn du {topic}-Anfänger bist, schau dir das JETZT an."
+    ],
+    "Funny / Meme": [
+      "Ich tue so, als wäre {topic} nicht meine ganze Persönlichkeit.",
+      "POV: Jemand fragt dich zum hundertsten Mal nach {topic}.",
+      "Sag mir, dass du {topic} liebst, ohne es zu sagen.",
+      "Arten von Leuten im {niche}: die {topic}-Edition.",
+      "Wenn {topic} um 2 Uhr nachts anders knallt.",
+      "Ich dachte wirklich, {topic} wäre einfach. Ich lag falsch."
+    ]
+  },
+  PT: {
+    "Controversial / Hot take": [
+      "Opinião impopular: {topic} é a maior mentira do {niche}.",
+      "Para de fazer {topic}. É isso que realmente funciona.",
+      "Todo mundo está errado sobre {topic}. Deixa eu explicar.",
+      "Hot take: se você ainda faz {topic}, está perdendo dinheiro.",
+      "Prefiro ser honesto do que popular — {topic} é uma farsa.",
+      "A indústria do {niche} não quer que você saiba disso sobre {topic}.",
+      "Vou ser cancelado por dizer isso, mas {topic} é overrated.",
+      "Ninguém fala sobre isso, mas {topic} está destruindo seu progresso."
+    ],
+    "Curious / Question": [
+      "E se eu te dissesse que {topic} pode mudar tudo?",
+      "Por que 99% das pessoas falham em {topic}? Eu te mostro.",
+      "Testei {topic} por 30 dias. Veja o que aconteceu.",
+      "A única pergunta sobre {topic} que ninguém faz: {question}",
+      "Como o top 1% do {niche} realmente aborda {topic}?",
+      "Por que todo mundo está obcecado com {topic} de repente?",
+      "O que ninguém te conta sobre {topic} até ser tarde demais."
+    ],
+    "Shocking / Stat": [
+      "93% erram completamente em {topic}. Você é um deles?",
+      "Acabei de descobrir {topic} e está quebrando a internet.",
+      "Esse segredo do {niche} me valeu 1M€ — e estou dando de graça.",
+      "Os profissionais odeiam esse truque estranho sobre {topic}.",
+      "Passei de 0 a 100K com {topic}. Aqui está o método exato.",
+      "Os dados confirmam: {topic} funciona 3x melhor que todo o resto."
+    ],
+    "Relatable / Story": [
+      "POV: você percebe que {topic} era a resposta o tempo todo.",
+      "Eu, três anos atrás, achando que {topic} não era pra mim.",
+      "Storytime: como {topic} mudou minha vida em 90 dias.",
+      "Eu estava quebrado até descobrir {topic}.",
+      "O momento exato em que soube que {topic} era pra mim.",
+      "Dia 1 vs Dia 90 de {topic} — a diferença é absurda."
+    ],
+    "Educational / How-to": [
+      "Aqui está exatamente como {topic} (passo a passo).",
+      "O framework de 3 passos para dominar {topic}.",
+      "Salva isso — o guia definitivo de {topic}.",
+      "5 erros que você comete com {topic} (e como corrigir).",
+      "Copia esse sistema exato de {topic} que funcionou pra mim.",
+      "Se você é iniciante em {topic}, assiste isso AGORA."
+    ],
+    "Funny / Meme": [
+      "Eu fingindo que {topic} não é minha personalidade inteira.",
+      "POV: alguém te pergunta sobre {topic} pela centésima vez.",
+      "Me diz que você ama {topic} sem me dizer que ama {topic}.",
+      "Tipos de pessoas no {niche}: edição {topic}.",
+      "Quando {topic} bate diferente às 2h da manhã.",
+      "Eu realmente achei que {topic} seria fácil. Eu estava errado."
+    ]
+  },
+  IT: {
+    "Controversial / Hot take": [
+      "Opinione impopolare: {topic} è la più grande bugia del {niche}.",
+      "Smetti di fare {topic}. Ecco cosa funziona davvero.",
+      "Tutti si sbagliano su {topic}. Te lo spiego.",
+      "Hot take: se fai ancora {topic}, stai perdendo soldi.",
+      "Preferisco essere onesto che popolare — {topic} è una truffa.",
+      "L'industria del {niche} non vuole che tu sappia questo su {topic}.",
+      "Mi cancelleranno per aver detto questo, ma {topic} è sopravvalutato.",
+      "Nessuno ne parla, ma {topic} sta distruggendo i tuoi progressi."
+    ],
+    "Curious / Question": [
+      "E se ti dicessi che {topic} può cambiare tutto?",
+      "Perché il 99% fallisce con {topic}? Te lo mostro.",
+      "Ho provato {topic} per 30 giorni. Ecco cosa è successo.",
+      "L'unica domanda su {topic} che nessuno fa: {question}",
+      "Come affronta davvero {topic} il top 1% del {niche}?",
+      "Perché tutti sono improvvisamente ossessionati da {topic}?",
+      "Cosa nessuno ti dice su {topic} finché non è troppo tardi."
+    ],
+    "Shocking / Stat": [
+      "Il 93% sbaglia completamente su {topic}. Tu sei tra questi?",
+      "Ho appena scoperto {topic} e sta spaccando internet.",
+      "Questo segreto del {niche} mi è valso 1M€ — e lo sto regalando.",
+      "I professionisti odiano questo trucco strano su {topic}.",
+      "Sono passato da 0 a 100K con {topic}. Ecco il metodo esatto.",
+      "I dati parlano chiaro: {topic} funziona 3x meglio di tutto il resto."
+    ],
+    "Relatable / Story": [
+      "POV: ti rendi conto che {topic} era la risposta fin dall'inizio.",
+      "Io, tre anni fa, a pensare che {topic} non facesse per me.",
+      "Storytime: come {topic} mi ha cambiato la vita in 90 giorni.",
+      "Ero al verde finché non ho scoperto {topic}.",
+      "Il momento esatto in cui ho capito che {topic} era per me.",
+      "Giorno 1 vs Giorno 90 di {topic} — la differenza è pazzesca."
+    ],
+    "Educational / How-to": [
+      "Ecco esattamente come {topic} (passo dopo passo).",
+      "Il framework in 3 passi per padroneggiare {topic}.",
+      "Salvalo — la guida definitiva a {topic}.",
+      "5 errori che fai con {topic} (e come sistemarli).",
+      "Copia questo sistema esatto di {topic} che ha funzionato per me.",
+      "Se sei un principiante di {topic}, guarda questo ORA."
+    ],
+    "Funny / Meme": [
+      "Io che fingo che {topic} non sia tutta la mia personalità.",
+      "POV: qualcuno ti chiede di {topic} per la centesima volta.",
+      "Dimmi che ami {topic} senza dirmi che ami {topic}.",
+      "Tipi di persone nel {niche}: edizione {topic}.",
+      "Quando {topic} colpisce diverso alle 2 di notte.",
+      "Pensavo davvero che {topic} fosse facile. Mi sbagliavo."
+    ]
+  }
+};
+
+const SCRIPT_TEMPLATES = {
+  EN: (topic, niche) => `[HOOK — first 3 seconds, look at camera]
+"${topic} — and you're about to see why everyone's doing it wrong."
+
+[PROBLEM — 0:03 to 0:10]
+Most people in ${niche} approach ${topic} like this:
+→ Generic advice
+→ No system
+→ Hope for the best
+
+[REVEAL — 0:10 to 0:25]
+But here's what actually works:
+1. Start with the WHY before the HOW
+2. Build a 7-day streak, not a 365-day plan
+3. Track ONE metric that matters
+
+[PAYOFF — 0:25 to 0:40]
+I tried this for 30 days. The result? ${Math.floor(Math.random() * 5) + 2}x more ${niche} progress than the year before.
+
+[CTA — 0:40 to 0:50]
+Follow for more ${niche} hacks. Comment "WANT" if you want my free ${topic} checklist.
+
+[VISUAL NOTES]
+- B-roll of common mistakes (0:03-0:10)
+- Text overlay for the 3 steps (0:10-0:25)
+- Before/after split screen (0:25-0:40)
+- Point to comments CTA (0:40-0:50)`,
+  FR: (topic, niche) => `[HOOK — 3 premières secondes, regarde la caméra]
+"${topic} — et tu vas voir pourquoi tout le monde se trompe."
+
+[PROBLÈME — 0:03 à 0:10]
+La plupart des gens en ${niche} abordent ${topic} comme ça :
+→ Conseils génériques
+→ Pas de système
+→ Espérer que ça marche
+
+[RÉVÉLATION — 0:10 à 0:25]
+Mais voici ce qui marche vraiment :
+1. Commence par le POURQUOI avant le COMMENT
+2. Fais une série de 7 jours, pas un plan de 365 jours
+3. Suis UNE seule métrique qui compte
+
+[RÉSULTAT — 0:25 à 0:40]
+J'ai testé ça pendant 30 jours. Le résultat ? ${Math.floor(Math.random() * 5) + 2}x plus de progrès en ${niche} que l'année d'avant.
+
+[CTA — 0:40 à 0:50]
+Follow pour plus de hacks ${niche}. Commente "WANT" pour ma checklist gratuite ${topic}.
+
+[NOTES VISUELLES]
+- B-roll des erreurs classiques (0:03-0:10)
+- Texte overlay pour les 3 étapes (0:10-0:25)
+- Avant/après split screen (0:25-0:40)
+- Pointe les commentaires (0:40-0:50)`,
+  ES: (topic, niche) => `[HOOK — primeros 3 segundos, mira a cámara]
+"${topic} — y vas a ver por qué todos lo están haciendo mal."
+
+[PROBLEMA — 0:03 a 0:10]
+La mayoría en ${niche} aborda ${topic} así:
+→ Consejos genéricos
+→ Sin sistema
+→ Esperar que funcione
+
+[REVELACIÓN — 0:10 a 0:25]
+Pero esto es lo que realmente funciona:
+1. Empieza con el POR QUÉ antes del CÓMO
+2. Haz una racha de 7 días, no un plan de 365
+3. Mide UNA sola métrica que importe
+
+[RESULTADO — 0:25 a 0:40]
+Lo probé 30 días. ¿El resultado? ${Math.floor(Math.random() * 5) + 2}x más progreso en ${niche} que el año pasado.
+
+[CTA — 0:40 a 0:50]
+Sígueme para más hacks de ${niche}. Comenta "WANT" si quieres mi checklist gratis de ${topic}.
+
+[NOTAS VISUALES]
+- B-roll de errores comunes (0:03-0:10)
+- Texto en pantalla con los 3 pasos (0:10-0:25)
+- Antes/después split screen (0:25-0:40)
+- Señala los comentarios (0:40-0:50)`,
+  DE: (topic, niche) => `[HOOK — erste 3 Sekunden, in die Kamera schauen]
+"${topic} — und du wirst sehen, warum es alle falsch machen."
+
+[PROBLEM — 0:03 bis 0:10]
+Die meisten in ${niche} gehen ${topic} so an:
+→ Generische Tipps
+→ Kein System
+→ Auf das Beste hoffen
+
+[ENTHÜLLUNG — 0:10 bis 0:25]
+Aber das funktioniert wirklich:
+1. Starte mit dem WARUM vor dem WIE
+2. Baue eine 7-Tage-Serie, keinen 365-Tage-Plan
+3. Miss EINE Kennzahl, die zählt
+
+[ERGEBNIS — 0:25 bis 0:40]
+Ich habe das 30 Tage getestet. Das Ergebnis? ${Math.floor(Math.random() * 5) + 2}x mehr ${niche}-Fortschritt als im Jahr davor.
+
+[CTA — 0:40 bis 0:50]
+Folge für mehr ${niche}-Hacks. Kommentiere "WANT" für meine kostenlose ${topic}-Checkliste.
+
+[VISUELLE NOTIZEN]
+- B-Roll typischer Fehler (0:03-0:10)
+- Text-Overlay für die 3 Schritte (0:10-0:25)
+- Vorher/Nachher Split Screen (0:25-0:40)
+- Auf Kommentare zeigen (0:40-0:50)`,
+  PT: (topic, niche) => `[HOOK — primeiros 3 segundos, olha para a câmera]
+"${topic} — e você vai ver por que todo mundo está fazendo errado."
+
+[PROBLEMA — 0:03 a 0:10]
+A maioria em ${niche} aborda ${topic} assim:
+→ Conselhos genéricos
+→ Sem sistema
+→ Esperar que funcione
+
+[REVELAÇÃO — 0:10 a 0:25]
+Mas é isso que realmente funciona:
+1. Comece pelo PORQUÊ antes do COMO
+2. Faça uma sequência de 7 dias, não um plano de 365
+3. Meça UMA métrica que importa
+
+[RESULTADO — 0:25 a 0:40]
+Testei por 30 dias. O resultado? ${Math.floor(Math.random() * 5) + 2}x mais progresso em ${niche} que no ano anterior.
+
+[CTA — 0:40 a 0:50]
+Segue para mais hacks de ${niche}. Comenta "WANT" para ganhar meu checklist grátis de ${topic}.
+
+[NOTAS VISUAIS]
+- B-roll de erros comuns (0:03-0:10)
+- Texto overlay com os 3 passos (0:10-0:25)
+- Antes/depois split screen (0:25-0:40)
+- Aponta para os comentários (0:40-0:50)`,
+  IT: (topic, niche) => `[HOOK — primi 3 secondi, guarda in camera]
+"${topic} — e vedrai perché tutti lo stanno facendo male."
+
+[PROBLEMA — 0:03 a 0:10]
+La maggior parte delle persone in ${niche} affronta ${topic} così:
+→ Consigli generici
+→ Nessun sistema
+→ Sperare che funzioni
+
+[RIVELAZIONE — 0:10 a 0:25]
+Ma ecco cosa funziona davvero:
+1. Inizia con il PERCHÉ prima del COME
+2. Costruisci una serie di 7 giorni, non un piano di 365
+3. Misura UNA sola metrica che conta
+
+[RISULTATO — 0:25 a 0:40]
+L'ho provato per 30 giorni. Il risultato? ${Math.floor(Math.random() * 5) + 2}x più progressi in ${niche} rispetto all'anno prima.
+
+[CTA — 0:40 a 0:50]
+Seguimi per altri hack su ${niche}. Commenta "WANT" se vuoi la mia checklist gratuita su ${topic}.
+
+[NOTE VISIVE]
+- B-roll degli errori comuni (0:03-0:10)
+- Testo in sovraimpressione con i 3 passi (0:10-0:25)
+- Split prima/dopo (0:25-0:40)
+- Punta ai commenti (0:40-0:50)`
+};
+
+const CAPTION_TEMPLATES = {
+  EN: (topic, niche) => `I tried ${topic} for 30 days and here's what happened 👀\n\nThe full breakdown is in this video. Save it for later.\n\nDrop a 🔥 if you're trying this too.`,
+  FR: (topic, niche) => `J'ai testé ${topic} pendant 30 jours et voici ce qui s'est passé 👀\n\nLe détail complet est dans cette vidéo. Sauvegarde pour plus tard.\n\nLâche un 🔥 si tu testes aussi.`,
+  ES: (topic, niche) => `Probé ${topic} durante 30 días y esto fue lo que pasó 👀\n\nEl desglose completo está en este vídeo. Guárdalo para después.\n\nDeja un 🔥 si tú también lo estás intentando.`,
+  DE: (topic, niche) => `Ich habe ${topic} 30 Tage getestet und das ist passiert 👀\n\nDie ganze Aufschlüsselung ist in diesem Video. Speichere es für später.\n\nHinterlasse ein 🔥, wenn du das auch ausprobierst.`,
+  PT: (topic, niche) => `Testei ${topic} por 30 dias e veja o que aconteceu 👀\n\nO passo a passo completo está neste vídeo. Salve para depois.\n\nDeixa um 🔥 se você também está testando.`,
+  IT: (topic, niche) => `Ho provato ${topic} per 30 giorni ed ecco cosa è successo 👀\n\nIl breakdown completo è in questo video. Salvalo per dopo.\n\nLascia un 🔥 se lo stai provando anche tu.`
+};
+
+const HASHTAGS_BY_LANG = {
+  EN: {
+    fitness: ["#fitness", "#gymtok", "#workoutmotivation", "#fitnessjourney", "#fyp", "#gym", "#fittok", "#healthylifestyle"],
+    cooking: ["#cooking", "#foodtok", "#recipe", "#homecooking", "#fyp", "#foodie", "#easyrecipe", "#tiktokfood"],
+    saas: ["#saas", "#startup", "#entrepreneur", "#productivity", "#founder", "#b2b", "#tech", "#fyp"],
+    dating: ["#dating", "#datingadvice", "#relationshiptips", "#datingcoach", "#fyp", "#love", "#single", "#datetok"],
+    default: ["#fyp", "#viral", "#trending", "#foryou", "#tiktok", "#reels", "#viralvideo", "#explore"]
+  },
+  FR: {
+    fitness: ["#fitness", "#sport", "#musculation", "#fyp", "#pourtoi", "#viral", "#entraînement", "#santé"],
+    cooking: ["#cuisine", "#recette", "#cuisiner", "#food", "#fyp", "#pourtoi", "#gastronomie", "#chef"],
+    saas: ["#saas", "#startup", "#entrepreneur", "#productivité", "#founder", "#b2b", "#tech", "#fyp"],
+    dating: ["#amour", "#relations", "#couple", "#rencontre", "#fyp", "#pourtoi", "#viral", "#celib"],
+    default: ["#fyp", "#pourtoi", "#viral", "#tiktok", "#reels", "#tendance", "#vidéo", "#explore"]
+  },
+  ES: {
+    fitness: ["#fitness", "#gym", "#entrenamiento", "#vidasana", "#fyp", "#parati", "#viral", "#deporte"],
+    cooking: ["#cocina", "#receta", "#cocinar", "#comida", "#fyp", "#parati", "#gastronomia", "#chef"],
+    saas: ["#saas", "#startup", "#emprendedor", "#productividad", "#founder", "#b2b", "#tech", "#fyp"],
+    dating: ["#amor", "#relaciones", "#pareja", "#citas", "#fyp", "#parati", "#viral", "#soltero"],
+    default: ["#fyp", "#parati", "#viral", "#tiktok", "#reels", "#tendencia", "#video", "#explorar"]
+  },
+  DE: {
+    fitness: ["#fitness", "#sport", "#training", "#motivation", "#fyp", "#foryou", "#viral", "#gesundheit"],
+    cooking: ["#kochen", "#rezept", "#küche", "#essen", "#fyp", "#foryou", "#lecker", "#chefkoch"],
+    saas: ["#saas", "#startup", "#unternehmer", "#produktivität", "#founder", "#b2b", "#tech", "#fyp"],
+    dating: ["#liebe", "#beziehung", "#partner", "#dating", "#fyp", "#foryou", "#viral", "#single"],
+    default: ["#fyp", "#foryou", "#viral", "#tiktok", "#reels", "#trend", "#video", "#entdecken"]
+  },
+  PT: {
+    fitness: ["#fitness", "#treino", "#musculação", "#saúde", "#fyp", "#paravoce", "#viral", "#esporte"],
+    cooking: ["#culinária", "#receita", "#cozinha", "#comida", "#fyp", "#paravoce", "#gastronomia", "#chef"],
+    saas: ["#saas", "#startup", "#empreendedor", "#produtividade", "#founder", "#b2b", "#tech", "#fyp"],
+    dating: ["#amor", "#relacionamento", "#casal", "#namoro", "#fyp", "#paravoce", "#viral", "#solteiro"],
+    default: ["#fyp", "#paravoce", "#viral", "#tiktok", "#reels", "#tendência", "#vídeo", "#explorar"]
+  },
+  IT: {
+    fitness: ["#fitness", "#sport", "#allenamento", "#palestra", "#fyp", "#perte", "#virale", "#salute"],
+    cooking: ["#cucina", "#ricetta", "#cucinare", "#cibo", "#fyp", "#perte", "#gastronomia", "#chef"],
+    saas: ["#saas", "#startup", "#imprenditore", "#produttività", "#founder", "#b2b", "#tech", "#fyp"],
+    dating: ["#amore", "#relazioni", "#coppia", "#appuntamenti", "#fyp", "#perte", "#virale", "#single"],
+    default: ["#fyp", "#perte", "#virale", "#tiktok", "#reels", "#tendenza", "#video", "#esplora"]
+  }
+};
+
+function pickRandom(arr, n) {
+  return [...arr].sort(() => Math.random() - 0.5).slice(0, n);
+}
+
+function findNicheKey(niche) {
+  const n = niche.toLowerCase();
+  // Check across all languages for the niche key
+  const allKeys = new Set();
+  Object.values(HASHTAGS_BY_LANG).forEach(langPack => {
+    Object.keys(langPack).forEach(k => allKeys.add(k));
+  });
+  for (const key of allKeys) {
+    if (key !== 'default' && n.includes(key)) return key;
+  }
+  return 'default';
+}
+
+function generateContent(niche, platform, topic, tone, language = 'EN') {
+  const langPack = HOOK_TEMPLATES[language] || HOOK_TEMPLATES.EN;
+  const toneTemplates = langPack[tone] || langPack["Curious / Question"] || Object.values(langPack)[0];
+
+  // Language-aware question words for the {question} placeholder
+  const questionWordsByLang = {
+    EN: ["why", "how", "what", "when"],
+    FR: ["pourquoi", "comment", "quoi", "quand"],
+    ES: ["por qué", "cómo", "qué", "cuándo"],
+    DE: ["warum", "wie", "was", "wann"],
+    PT: ["por que", "como", "o que", "quando"],
+    IT: ["perché", "come", "cosa", "quando"]
+  };
+  const questionWords = questionWordsByLang[language] || questionWordsByLang.EN;
+  const randomQ = questionWords[Math.floor(Math.random() * questionWords.length)];
+
+  const hooks = pickRandom(toneTemplates, 5).map((tmpl) => {
+    return tmpl
+      .replace(/{topic}/g, topic)
+      .replace(/{niche}/g, niche)
+      .replace(/{question}/g, `${randomQ} most people never ask`);
+  });
+
+  const scriptFn = SCRIPT_TEMPLATES[language] || SCRIPT_TEMPLATES.EN;
+  const script = scriptFn(topic, niche);
+
+  const captionFn = CAPTION_TEMPLATES[language] || CAPTION_TEMPLATES.EN;
+  const caption = captionFn(topic, niche);
+
+  const langHashtags = HASHTAGS_BY_LANG[language] || HASHTAGS_BY_LANG.EN;
+  const nicheKey = findNicheKey(niche);
+  const hashtags = langHashtags[nicheKey] || langHashtags.default;
+
+  return { hooks, script, caption, hashtags };
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 1800);
+}
+
+function copyText(text, btn) {
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓';
+    btn.classList.add('copied');
+    showToast(t('out_copied'));
+    setTimeout(() => {
+      btn.textContent = t('out_copy');
+      btn.classList.remove('copied');
+    }, 1500);
+  });
+}
+
+function renderOutput(data) {
+  const hooksList = document.getElementById('hooksList');
+  hooksList.innerHTML = '';
+
+  // Remove old summaries
+  document.querySelectorAll('.score-summary').forEach(el => el.remove());
+
+  // Score every hook and find the best one
+  const language = data._language || getCurrentLanguage();
+  const scoredHooks = data.hooks.map(hook => ({
+    hook,
+    score: scoreHook(hook, language)
+  }));
+  const bestScore = Math.max(...scoredHooks.map(s => s.score.total));
+  const totalAvg = Math.round(scoredHooks.reduce((sum, s) => sum + s.score.total, 0) / scoredHooks.length);
+
+  scoredHooks.forEach((sh) => {
+    const { hook, score } = sh;
+    const item = document.createElement('div');
+    const isBest = score.total === bestScore && score.total >= 70;
+    item.className = 'hook-item' + (isBest ? ' best-hook' : '');
+
+    let scoreClass = 'score-low';
+    if (score.total >= 75) scoreClass = 'score-high';
+    else if (score.total >= 50) scoreClass = 'score-mid';
+
+    const breakdownRows = score.breakdown.map(row => `
+      <div class="score-row">
+        <span class="label">${row.label}</span>
+        <div class="bar"><div class="bar-fill" style="width: ${(row.pts / row.max) * 100}%"></div></div>
+        <span class="pts">${row.pts}/${row.max}</span>
+      </div>
+    `).join('');
+
+    item.innerHTML = `
+      <div class="hook-row">
+        <span class="hook-text">${hook}</span>
+        <div class="hook-actions">
+          <span class="score-badge ${scoreClass}" title="Click to see virality breakdown">🎯 ${score.total}</span>
+          <button class="copy-btn">${t('out_copy')}</button>
+        </div>
+      </div>
+      <div class="score-breakdown">
+        ${breakdownRows}
+        ${score.hint ? `<div class="score-hint">${score.hint}</div>` : ''}
+      </div>
+    `;
+    const btn = item.querySelector('.copy-btn');
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      copyText(hook, btn);
+    });
+    const badge = item.querySelector('.score-badge');
+    badge.addEventListener('click', (e) => {
+      e.stopPropagation();
+      item.classList.toggle('expanded');
+    });
+    hooksList.appendChild(item);
+  });
+
+  // Summary banner
+  const summary = document.createElement('div');
+  summary.className = 'score-summary';
+  let summaryEmoji = '🎯';
+  let summaryText = `${t('out_score_avg')} <strong>${totalAvg}/100</strong>`;
+  if (totalAvg >= 75) { summaryEmoji = '🚀'; summaryText = `${t('out_score_strong')} <strong>${totalAvg}/100</strong>`; }
+  else if (totalAvg < 50) { summaryEmoji = '⚠️'; summaryText = `${t('out_score_low')} (${totalAvg}/100)`; }
+  summary.innerHTML = `<span class="emoji">${summaryEmoji}</span><span>${summaryText}</span><span style="color: var(--text-mute); font-size: 11px; margin-left: auto;">${t('out_score_hint')}</span>`;
+  hooksList.parentElement.appendChild(summary);
+
+  document.getElementById('scriptContent').textContent = data.script;
+  document.getElementById('captionContent').textContent = data.caption;
+
+  const tagsList = document.getElementById('hashtagsList');
+  tagsList.innerHTML = '';
+  data.hashtags.forEach((tag, i) => {
+    const span = document.createElement('span');
+    span.className = 'hashtag' + (i < 2 ? ' primary' : '');
+    span.textContent = tag;
+    tagsList.appendChild(span);
+  });
+
+  // Show engine badge if enabled
+  const existing = document.getElementById('engineBadge');
+  if (existing) existing.remove();
+  if (data._engine && getSettings().showBadge) {
+    const badge = document.createElement('div');
+    badge.id = 'engineBadge';
+    const labelKeys = {
+      'groq': 'engine_groq',
+      'openai': 'engine_openai',
+      'template': 'engine_template',
+      'template-fallback': 'engine_fallback'
+    };
+    const langLabel = (LANG_CONFIG[language] || LANG_CONFIG.EN).name;
+    badge.textContent = `${t(labelKeys[data._engine]) || data._engine} · ${langLabel}`;
+    badge.style.cssText = 'text-align: center; color: var(--text-mute); font-size: 12px; margin-top: 16px; padding: 8px;';
+    document.getElementById('output').appendChild(badge);
+  }
+
+  const out = document.getElementById('output');
+  out.classList.add('show');
+  setTimeout(() => out.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+}
+
+function getCurrentLanguage() {
+  const active = document.querySelector('.lang-chip.active');
+  return active ? active.dataset.lang : 'EN';
+}
+
+document.getElementById('genForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = document.getElementById('genBtn');
+  const niche = document.getElementById('niche').value.trim();
+  const platform = document.getElementById('platform').value;
+  const topic = document.getElementById('topic').value.trim();
+  const tone = document.getElementById('tone').value;
+  const language = getCurrentLanguage();
+
+  if (!niche || !topic) return;
+
+  btn.classList.add('loading');
+  btn.disabled = true;
+
+  try {
+    const data = await generateWithLLM(niche, platform, topic, tone, language);
+    renderOutput({ ...data, _language: language });
+  } catch (err) {
+    console.error('Generation failed:', err);
+    showToast(t('engine_fallback'));
+    // Graceful fallback
+    const data = { ...generateContent(niche, platform, topic, tone, language), _engine: 'template-fallback', _language: language };
+    renderOutput(data);
+  } finally {
+    btn.classList.remove('loading');
+    btn.disabled = false;
+  }
+});
+
+/* ============================================================
+   UI TRANSLATION — translate the entire site interface
+   ============================================================ */
+
+function openTranslateModal() {
+  const modal = document.getElementById('translateModal');
+  // Mark current UI language
+  modal.querySelectorAll('[data-ui-lang]').forEach(chip => {
+    chip.classList.toggle('active', chip.dataset.uiLang === currentUILang);
+  });
+  modal.classList.add('show');
+}
+
+function closeTranslateModal() {
+  document.getElementById('translateModal').classList.remove('show');
+}
+
+document.getElementById('openTranslateBtn').addEventListener('click', openTranslateModal);
+document.getElementById('closeTranslate').addEventListener('click', closeTranslateModal);
+document.getElementById('translateModal').addEventListener('click', (e) => {
+  if (e.target.id === 'translateModal') closeTranslateModal();
+});
+
+document.querySelectorAll('#translateModal [data-ui-lang]').forEach(chip => {
+  chip.addEventListener('click', () => {
+    const lang = chip.dataset.uiLang;
+    setUILanguage(lang);
+    // Re-render scheduled list with new language
+    renderScheduledList();
+    showToast((LANG_CONFIG[lang] || LANG_CONFIG.EN).flag + ' ' + t('translate_title').replace('🌐 ', ''));
+    setTimeout(closeTranslateModal, 200);
+  });
+});
+
+// Load saved UI language on init
+function initUILanguage() {
+  let saved = 'EN';
+  try { saved = localStorage.getItem('hookly_ui_lang') || 'EN'; } catch {}
+  if (!UI_STRINGS[saved]) saved = 'EN';
+  currentUILang = saved;
+  applyUITranslations();
+  // Set flag on translate button
+  const flagEl = document.getElementById('translateBtnFlag');
+  if (flagEl) flagEl.textContent = (LANG_CONFIG[saved] || LANG_CONFIG.EN).flag;
+}
+
+/* ============================================================
+   CONTENT LANGUAGE SELECTOR (independent from UI language)
+   ============================================================ */
+
+document.querySelectorAll('#langSelector .lang-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('#langSelector .lang-chip').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    const autoBadge = document.getElementById('langAutoBadge');
+    if (autoBadge) autoBadge.style.display = 'none';
+  });
+});
+
+// Auto-detect language from niche/topic input
+function autoDetectLanguage(text) {
+  if (!text) return null;
+  const lower = text.toLowerCase();
+  if (/\b(le|la|les|un|une|des|je|tu|nous|vous|avec|pour|dans|cette|très|déjà|toujours|comment|pourquoi)\b/.test(lower)) return 'FR';
+  if (/\b(el|la|los|las|un|una|yo|tú|nosotros|con|para|este|muy|siempre|cómo|por qué)\b/.test(lower)) return 'ES';
+  if (/\b(o|a|os|as|um|uma|nós|com|para|este|muito|sempre|como|por que)\b/.test(lower)) return 'PT';
+  if (/\b(il|la|gli|le|uno|una|noi|con|per|questo|molto|sempre|come|perché)\b/.test(lower)) return 'IT';
+  if (/\b(der|die|das|ein|eine|wir|mit|für|sehr|immer|wie|warum|nicht)\b/.test(lower)) return 'DE';
+  return null;
+}
+
+['niche', 'topic'].forEach(id => {
+  document.getElementById(id).addEventListener('input', () => {
+    const niche = document.getElementById('niche').value;
+    const topic = document.getElementById('topic').value;
+    const detected = autoDetectLanguage(niche + ' ' + topic);
+    if (detected && detected !== getCurrentLanguage()) {
+      const chip = document.querySelector(`#langSelector .lang-chip[data-lang="${detected}"]`);
+      if (chip) {
+        document.querySelectorAll('#langSelector .lang-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        const autoBadge = document.getElementById('langAutoBadge');
+        if (autoBadge) {
+          autoBadge.style.display = 'inline-flex';
+          autoBadge.textContent = `✨ Auto: ${(LANG_CONFIG[detected] || {}).name || detected}`;
+        }
+      }
+    }
+  });
+});
+
+/* ============================================================
+   SETTINGS MODAL
+   ============================================================ */
+
+function openSettingsModal() {
+  const s = getSettings();
+  document.getElementById('llmProvider').value = s.provider;
+  document.getElementById('groqApiKey').value = s.groqKey;
+  document.getElementById('openaiApiKey').value = s.openaiKey;
+  document.getElementById('groqModel').value = s.groqModel;
+  document.getElementById('openaiModel').value = s.openaiModel;
+  document.getElementById('showProviderBadge').checked = s.showBadge;
+  updateProviderFields();
+  document.getElementById('settingsModal').classList.add('show');
+}
+
+function updateProviderFields() {
+  const provider = document.getElementById('llmProvider').value;
+  document.getElementById('groqKeyField').style.display = provider === 'groq' ? 'block' : 'none';
+  document.getElementById('openaiKeyField').style.display = provider === 'openai' ? 'block' : 'none';
+  document.getElementById('groqModelField').style.display = provider === 'groq' ? 'block' : 'none';
+  document.getElementById('openaiModelField').style.display = provider === 'openai' ? 'block' : 'none';
+}
+
+function closeSettingsModal() {
+  document.getElementById('settingsModal').classList.remove('show');
+}
+
+document.getElementById('openSettingsBtn').addEventListener('click', openSettingsModal);
+document.getElementById('closeSettings').addEventListener('click', closeSettingsModal);
+document.getElementById('settingsModal').addEventListener('click', (e) => {
+  if (e.target.id === 'settingsModal') closeSettingsModal();
+});
+document.getElementById('llmProvider').addEventListener('change', updateProviderFields);
+
+document.getElementById('saveSettingsBtn').addEventListener('click', () => {
+  saveSettings({
+    provider: document.getElementById('llmProvider').value,
+    groqKey: document.getElementById('groqApiKey').value.trim(),
+    openaiKey: document.getElementById('openaiApiKey').value.trim(),
+    groqModel: document.getElementById('groqModel').value,
+    openaiModel: document.getElementById('openaiModel').value,
+    showBadge: document.getElementById('showProviderBadge').checked
+  });
+  showToast(t('set_saved'));
+  closeSettingsModal();
+});
+
+document.getElementById('testProviderBtn').addEventListener('click', async () => {
+  const s = {
+    provider: document.getElementById('llmProvider').value,
+    groqKey: document.getElementById('groqApiKey').value.trim(),
+    openaiKey: document.getElementById('openaiApiKey').value.trim(),
+    groqModel: document.getElementById('groqModel').value,
+    openaiModel: document.getElementById('openaiModel').value,
+    showBadge: true
+  };
+  if (s.provider === 'template') {
+    showToast(t('set_test_template'));
+    return;
+  }
+  if (s.provider === 'groq' && !s.groqKey) { showToast(t('set_test_no_key_groq')); return; }
+  if (s.provider === 'openai' && !s.openaiKey) { showToast(t('set_test_no_key_openai')); return; }
+
+  saveSettings(s);
+  showToast(t('set_testing'));
+  try {
+    await generateWithLLM('fitness', 'TikTok', '5 morning habits', 'Curious / Question', getCurrentLanguage());
+    showToast(t('set_test_ok'));
+  } catch (err) {
+    showToast('❌ ' + err.message.slice(0, 60));
+  }
+});
+
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', (e) => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+/* ============================================================
+   SCHEDULER — Reminders, Calendar export, Notifications
+   ============================================================ */
+
+const BEST_TIMES = {
+  'TikTok': [
+    { time: '07:00', label: '7 AM' },
+    { time: '12:00', label: '12 PM', best: true },
+    { time: '19:00', label: '7 PM', best: true },
+    { time: '21:00', label: '9 PM', best: true },
+    { time: '23:00', label: '11 PM' },
+    { time: '15:00', label: '3 PM' }
+  ],
+  'Instagram Reels': [
+    { time: '06:00', label: '6 AM' },
+    { time: '12:00', label: '12 PM', best: true },
+    { time: '18:00', label: '6 PM', best: true },
+    { time: '21:00', label: '9 PM' },
+    { time: '09:00', label: '9 AM' },
+    { time: '15:00', label: '3 PM' }
+  ],
+  'YouTube Shorts': [
+    { time: '14:00', label: '2 PM', best: true },
+    { time: '17:00', label: '5 PM', best: true },
+    { time: '20:00', label: '8 PM' },
+    { time: '12:00', label: '12 PM' },
+    { time: '09:00', label: '9 AM' },
+    { time: '22:00', label: '10 PM' }
+  ],
+  'LinkedIn': [
+    { time: '08:00', label: '8 AM', best: true },
+    { time: '12:00', label: '12 PM', best: true },
+    { time: '17:00', label: '5 PM' },
+    { time: '10:00', label: '10 AM' },
+    { time: '14:00', label: '2 PM' },
+    { time: '16:00', label: '4 PM' }
+  ]
+};
+
+let currentScheduledContent = null;
+let notificationTimers = [];
+
+function getScheduledPosts() {
+  try {
+    return JSON.parse(localStorage.getItem('hookly_scheduled') || '[]');
+  } catch { return []; }
+}
+
+function setScheduledPosts(posts) {
+  localStorage.setItem('hookly_scheduled', JSON.stringify(posts));
+  updateScheduledCount();
+  renderScheduledList();
+}
+
+function updateScheduledCount() {
+  const count = getScheduledPosts().length;
+  const badge = document.getElementById('scheduledCount');
+  if (count > 0) {
+    badge.style.display = 'flex';
+    badge.textContent = count;
+  } else {
+    badge.style.display = 'none';
+  }
+}
+
+function formatDateTime(date, time) {
+  // Returns ISO string in local time
+  return new Date(`${date}T${time}:00`).toISOString();
+}
+
+function openScheduleModal() {
+  // Get current generated content
+  const script = document.getElementById('scriptContent').textContent;
+  const caption = document.getElementById('captionContent').textContent;
+  const hashtags = Array.from(document.querySelectorAll('#hashtagsList .hashtag')).map(h => h.textContent).join(' ');
+  const hooks = Array.from(document.querySelectorAll('#hooksList .hook-item span:first-child')).map(h => h.textContent);
+  const niche = document.getElementById('niche').value.trim();
+  const platform = document.getElementById('platform').value;
+  const topic = document.getElementById('topic').value.trim();
+  const tone = document.getElementById('tone').value;
+
+  if (!script) {
+    showToast(t('sched_gen_first'));
+    return;
+  }
+
+  currentScheduledContent = { script, caption, hashtags, hooks, niche, platform, topic, tone };
+
+  document.getElementById('modalPlatform').textContent = platform;
+
+  // Render best times
+  const suggestions = document.getElementById('timeSuggestions');
+  suggestions.innerHTML = '';
+  const times = BEST_TIMES[platform] || BEST_TIMES['TikTok'];
+  times.forEach(t => {
+    const chip = document.createElement('div');
+    chip.className = 'time-chip' + (t.best ? ' best' : '');
+    chip.innerHTML = `${t.label}${t.best ? `<span class="badge-mini">${t('sched_best_chip')}</span>` : ''}`;
+    chip.addEventListener('click', () => {
+      document.getElementById('scheduleTime').value = t.time;
+    });
+    suggestions.appendChild(chip);
+  });
+
+  // Default to tomorrow at first best time
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const defaultTime = times.find(t => t.best) || times[0];
+  document.getElementById('scheduleDate').value = tomorrow.toISOString().split('T')[0];
+  document.getElementById('scheduleTime').value = defaultTime.time;
+  document.getElementById('notifyCheck').checked = false;
+
+  document.getElementById('scheduleModal').classList.add('show');
+}
+
+function closeScheduleModal() {
+  document.getElementById('scheduleModal').classList.remove('show');
+}
+
+function buildEventDetails() {
+  const date = document.getElementById('scheduleDate').value;
+  const time = document.getElementById('scheduleTime').value;
+  if (!date || !time) {
+    showToast(t('sched_pick_first'));
+    return null;
+  }
+  const c = currentScheduledContent;
+  const startISO = formatDateTime(date, time);
+  const endDate = new Date(startISO);
+  endDate.setMinutes(endDate.getMinutes() + 30);
+  const endISO = endDate.toISOString();
+
+  return {
+    title: `📱 Post: ${c.topic.slice(0, 50)}`,
+    description: `🔥 Hook: ${c.hooks[0] || ''}\n\n📝 Caption: ${c.caption}\n\n#️⃣ Hashtags: ${c.hashtags}\n\n— Generated by Hookly`,
+    location: c.platform,
+    startISO, endISO,
+    date, time
+  };
+}
+
+function buildGoogleCalendarURL(details) {
+  const fmt = (iso) => iso.replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+  const params = new URLSearchParams({
+    action: 'TEMPLATE',
+    text: details.title,
+    dates: `${fmt(details.startISO)}/${fmt(details.endISO)}`,
+    details: details.description,
+    location: details.location
+  });
+  return `https://calendar.google.com/calendar/render?${params}`;
+}
+
+function buildICSFile(details) {
+  const fmt = (iso) => iso.replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+  const c = currentScheduledContent;
+  return `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Hookly//Schedule//EN
+BEGIN:VEVENT
+UID:${Date.now()}@hookly.app
+DTSTAMP:${fmt(new Date().toISOString())}
+DTSTART:${fmt(details.startISO)}
+DTEND:${fmt(details.endISO)}
+SUMMARY:${details.title}
+DESCRIPTION:${details.description.replace(/\n/g, '\\n')}
+LOCATION:${details.location}
+END:VEVENT
+END:VCALENDAR`;
+}
+
+function scheduleBrowserNotification(details) {
+  const targetTime = new Date(details.startISO).getTime();
+  const now = Date.now();
+  const delay = targetTime - now;
+
+  if (delay < 0) {
+    showToast(t('sched_past'));
+    return false;
+  }
+
+  // Set timeout for the notification
+  const timerId = setTimeout(() => {
+    // Pre-copy the content
+    const c = currentScheduledContent;
+    const fullText = `${c.caption}\n\n${c.hashtags}`;
+    navigator.clipboard.writeText(fullText).catch(() => {});
+
+    // Fire notification
+    if ('Notification' in window && Notification.permission === 'granted') {
+      new Notification('⏰ ' + c.platform + '!', {
+        body: t('out_copied'),
+        icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="80" font-size="80">🔥</text></svg>',
+        tag: 'hookly-' + Date.now()
+      });
+    } else {
+      showToast('⏰ ' + t('out_copied'));
+    }
+  }, delay);
+
+  notificationTimers.push(timerId);
+  return true;
+}
+
+function saveToLocal(details) {
+  const posts = getScheduledPosts();
+  const c = currentScheduledContent;
+  const newPost = {
+    id: 'post_' + Date.now(),
+    title: details.title,
+    date: details.date,
+    time: details.time,
+    platform: c.platform,
+    niche: c.niche,
+    topic: c.topic,
+    caption: c.caption,
+    hashtags: c.hashtags,
+    script: c.script,
+    hooks: c.hooks,
+    notify: document.getElementById('notifyCheck').checked
+  };
+  posts.unshift(newPost);
+  setScheduledPosts(posts);
+
+  if (newPost.notify) {
+    if ('Notification' in window) {
+      Notification.requestPermission().then(perm => {
+        if (perm === 'granted') {
+          scheduleBrowserNotification(details);
+          showToast(t('sched_reminder_set'));
+        } else {
+          showToast(t('sched_saved_no_notify'));
+        }
+      });
+    } else {
+      showToast(t('sched_saved'));
+    }
+  } else {
+    showToast(t('sched_saved'));
+  }
+}
+
+function renderScheduledList() {
+  const list = document.getElementById('scheduledList');
+  const posts = getScheduledPosts();
+
+  if (posts.length === 0) {
+    list.innerHTML = `<div class="empty-state">${t('dash_empty')}</div>`;
+    return;
+  }
+
+  list.innerHTML = '';
+  const days = t('days_short') || ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const months = t('months_short') || ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  posts.forEach(post => {
+    const item = document.createElement('div');
+    item.className = 'scheduled-item';
+    const dateObj = new Date(`${post.date}T${post.time}:00`);
+    const dow = days[dateObj.getDay()];
+    const mon = months[dateObj.getMonth()];
+    const day = dateObj.getDate();
+    const hour = dateObj.toLocaleString('en-US', { hour: 'numeric', minute: '2-digit' });
+    const formatted = `${dow}, ${mon} ${day} · ${hour}`;
+    const isPast = dateObj.getTime() < Date.now();
+
+    item.innerHTML = `
+      <div class="info">
+        <div class="title">${post.title} <span class="platform-tag">${post.platform}</span></div>
+        <div class="meta">${formatted} ${isPast ? '⚠️' : post.notify ? '🔔' : ''}</div>
+      </div>
+      <div class="actions">
+        <button class="schedule-btn" data-action="copy" data-id="${post.id}">${t('dash_copy')}</button>
+        <button class="schedule-btn" data-action="remove" data-id="${post.id}">${t('dash_remove')}</button>
+      </div>
+    `;
+    list.appendChild(item);
+  });
+
+  // Attach handlers
+  list.querySelectorAll('[data-action]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.id;
+      const action = btn.dataset.action;
+      const posts = getScheduledPosts();
+      const post = posts.find(p => p.id === id);
+      if (!post) return;
+
+      if (action === 'copy') {
+        const text = `${post.caption}\n\n${post.hashtags}`;
+        navigator.clipboard.writeText(text).then(() => {
+          showToast(t('out_copied'));
+        });
+      } else if (action === 'remove') {
+        setScheduledPosts(posts.filter(p => p.id !== id));
+        showToast(t('sched_removed'));
+      }
+    });
+  });
+}
+
+// Modal handlers
+document.getElementById('openScheduleBtn').addEventListener('click', openScheduleModal);
+document.getElementById('closeModal').addEventListener('click', closeScheduleModal);
+document.getElementById('scheduleModal').addEventListener('click', (e) => {
+  if (e.target.id === 'scheduleModal') closeScheduleModal();
+});
+
+document.getElementById('gcalBtn').addEventListener('click', () => {
+  const details = buildEventDetails();
+  if (!details) return;
+  const url = buildGoogleCalendarURL(details);
+  window.open(url, '_blank');
+  saveToLocal(details);
+  closeScheduleModal();
+});
+
+document.getElementById('icsBtn').addEventListener('click', () => {
+  const details = buildEventDetails();
+  if (!details) return;
+  const ics = buildICSFile(details);
+  const blob = new Blob([ics], { type: 'text/calendar' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `hookly-${details.date}.ics`;
+  a.click();
+  URL.revokeObjectURL(url);
+  saveToLocal(details);
+  closeScheduleModal();
+  showToast(t('sched_dl'));
+});
+
+document.getElementById('saveLocalBtn').addEventListener('click', () => {
+  const details = buildEventDetails();
+  if (!details) return;
+  saveToLocal(details);
+  closeScheduleModal();
+});
+
+// Init
+initUILanguage();
+updateScheduledCount();
+renderScheduledList();
+</script>
+</body>
+</html>

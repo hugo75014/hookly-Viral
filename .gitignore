@@ -1,0 +1,38 @@
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Editor
+.vscode/
+.idea/
+*.iml
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build
+dist/
+build/
+.cache/
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+
+# Test artifacts
+coverage/
+.nyc_output/
+
+# OS junk
+._*
