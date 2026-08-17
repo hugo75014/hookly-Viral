@@ -2,7 +2,7 @@
 
 Generate viral TikTok/Reels/Shorts hooks, scripts, captions & hashtags in 10 seconds. Built-in **Virality Score (0-100)** and **6 native languages** (EN, FR, ES, DE, PT, IT).
 
-**🌐 Live demo:** [https://ebfddchq9khj9.space.minimax.io](https://ebfddchq9khj9.space.minimax.io)
+**🌐 Live demo:** [https://hookly.viralcuts.live](https://hookly.viralcuts.live)
 
 ---
 
@@ -119,3 +119,18 @@ MIT — fork it, ship it, sell it, whatever.
 ## 🙏 Credits
 
 Built with care for creators who don't want to stare at a blank screen.
+
+---
+
+## ⚖️ Legal notice
+
+- **Trading name:** Hookly
+- **Legal entity:** Hugues Bellevue, Entrepreneur individuel
+- **Registered address:** 8 rue Maurice Bouchor, 75014 Paris, France
+- **SIREN:** 839 385 499 RCS Paris
+- **SIRET:** 839 385 499 00018
+- **Contact:** hello@atlasflash.com — +33 6 59 80 24 91
+- **Publication director:** Hugues Bellevue
+- **Hosting:** Contabo GmbH — Aschauer Straße 32a, 81549 Munich, Germany
+
+Full terms, privacy policy and AI disclosure: see [legal.html](legal.html).
